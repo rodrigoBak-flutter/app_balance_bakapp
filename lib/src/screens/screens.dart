@@ -1,4 +1,4 @@
-export 'package:app_balances_bakapp/src/screens/add_screen.dart';
+export 'package:app_balances_bakapp/src/screens/add_expenses_screen.dart';
 
 export 'package:app_balances_bakapp/src/screens/add_entries.dart';
 
