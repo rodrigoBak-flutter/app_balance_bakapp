@@ -1,3 +1,4 @@
+import 'package:app_balances_bakapp/src/models/combined_model.dart';
 import 'package:flutter/material.dart';
 //Utils
 import 'package:app_balances_bakapp/src/utils/utils.dart';
@@ -9,32 +10,55 @@ class AddExpensesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(),
-        body: Column(
-          children: [
-            const BSNumKeyboardWidget(),
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                decoration: Constants.sheetBoxDecoration(
-                    Theme.of(context).primaryColorDark),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text('Fecha 12/12/2023'),
-                    Text('Seleccionar categoria'),
-                    Text('Agregar comentario'),
-                    Expanded(
-                      child: Center(
-                        child: Text('Btn Done'),
-                      ),
-                    ),
-                  ],
-                ),
+    CombinedModel cModel = CombinedModel();
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      /*
+      onTap: () => FocusScope.of(context).unfocus(),
+      Esta funcion permite minimozar mi Keyboar al tocar
+      cualquier otro lugar que no sea mi cuadro de texto  
+       */
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+          appBar: AppBar(),
+          body: Column(
+            children: [
+              BSNumKeyboardWidget(
+                cModel: cModel,
               ),
-            )
-          ],
-        ));
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  decoration: Constants.sheetBoxDecoration(
+                      Theme.of(context).primaryColorDark),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      DatePicketWidget(
+                        cModel: cModel,
+                      ),
+                      const Text('Seleccionar categoria'),
+                      CommentBoxWidget(
+                        cModel: cModel,
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: () {
+                              print('Comentario:' + cModel.comment);
+                              print('Cantidad Ingresada:' +
+                                  cModel.amount.toString());
+                            },
+                            child: Text('Btn Done'),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          )),
+    );
   }
 }

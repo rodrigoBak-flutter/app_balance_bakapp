@@ -1,8 +1,10 @@
+import 'package:app_balances_bakapp/src/models/combined_model.dart';
 import 'package:app_balances_bakapp/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class BSNumKeyboardWidget extends StatefulWidget {
-  const BSNumKeyboardWidget({super.key});
+  final CombinedModel cModel;
+  const BSNumKeyboardWidget({super.key, required this.cModel});
 
   @override
   State<BSNumKeyboardWidget> createState() => _BSNumKeyboardWidgetState();
@@ -10,6 +12,13 @@ class BSNumKeyboardWidget extends StatefulWidget {
 
 class _BSNumKeyboardWidgetState extends State<BSNumKeyboardWidget> {
   String import = '0.00';
+
+  @override
+  void initState() {
+    import = widget.cModel.amount.toStringAsFixed(2);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // Código para dar formato de moneda
@@ -41,6 +50,11 @@ class _BSNumKeyboardWidgetState extends State<BSNumKeyboardWidget> {
 
   _numPad() {
     if (import == '0.00') import = '';
+    _expenseChange(String amount) {
+      if (amount == '') amount = '0.00';
+      widget.cModel.amount = double.parse(amount);
+    }
+
     _num(String _text, double _height) {
       return GestureDetector(
         /*
@@ -50,6 +64,7 @@ class _BSNumKeyboardWidgetState extends State<BSNumKeyboardWidget> {
         behavior: HitTestBehavior.opaque,
         onTap: () => setState(() {
           import += _text;
+          widget.cModel.amount = double.parse(import);
         }),
         child: SizedBox(
           height: _height,
@@ -88,7 +103,7 @@ class _BSNumKeyboardWidgetState extends State<BSNumKeyboardWidget> {
           Con esta funcion cancelo el boton de telefo "ATRAS", lo desactivo
            
            */
-          onWillPop: ()async => false,
+          onWillPop: () async => false,
           child: SizedBox(
             height: size.height * 0.45,
             child: LayoutBuilder(builder: (context, constraints) {
@@ -141,10 +156,12 @@ class _BSNumKeyboardWidgetState extends State<BSNumKeyboardWidget> {
                             onTap: () => setState(() {
                               if (import.length > 0.00) {
                                 import = import.substring(0, import.length - 1);
+                                _expenseChange(import);
                               }
                             }),
                             onLongPress: () => setState(() {
                               import = '';
+                              _expenseChange(import);
                             }),
                           )
                         ],
@@ -157,6 +174,7 @@ class _BSNumKeyboardWidgetState extends State<BSNumKeyboardWidget> {
                         child: GestureDetector(
                           onTap: () => setState(() {
                             import = '0.00';
+                            _expenseChange(import);
                             Navigator.pop(context);
                           }),
                           behavior: HitTestBehavior.opaque,
@@ -171,6 +189,7 @@ class _BSNumKeyboardWidgetState extends State<BSNumKeyboardWidget> {
                         child: GestureDetector(
                           onTap: () => setState(() {
                             if (import.length == 0.00) import = '0.00';
+                            _expenseChange(import);
                             Navigator.pop(context);
                           }),
                           behavior: HitTestBehavior.opaque,
