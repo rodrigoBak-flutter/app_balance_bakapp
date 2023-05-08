@@ -37,7 +37,7 @@ class AddExpensesScreen extends StatelessWidget {
                       DatePicketWidget(
                         cModel: cModel,
                       ),
-                      const Text('Seleccionar categoria'),
+                      BsCategoryWidget(cModel: cModel),
                       CommentBoxWidget(
                         cModel: cModel,
                       ),
