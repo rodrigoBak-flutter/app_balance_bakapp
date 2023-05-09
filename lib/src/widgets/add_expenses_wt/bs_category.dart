@@ -1,7 +1,9 @@
 import 'package:app_balances_bakapp/src/models/models.dart';
+import 'package:app_balances_bakapp/src/providers/providers.dart';
 import 'package:app_balances_bakapp/src/utils/utils_colors.dart';
-import 'package:app_balances_bakapp/src/widgets/add_expenses_wt/category_list.dart';
+import 'package:app_balances_bakapp/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BsCategoryWidget extends StatefulWidget {
   final CombinedModel cModel;
@@ -15,8 +17,31 @@ class BsCategoryWidget extends StatefulWidget {
 }
 
 class _BsCategoryWidgetState extends State<BsCategoryWidget> {
+  var catList = CategoryList().catList;
+  final FeaturesModel fModel = FeaturesModel();
+  @override
+  /*
+    Este codigo solo se ejecuta la primera vez que inicio mi App
+    despues ya queda todo guardado en mi BBDD, lo que me ahorra memoria
+   */
+  void initState() {
+    var exProvider = Provider.of<ExpensesProvider>(context, listen: false);
+    if (exProvider.fList.isEmpty) {
+      for (FeaturesModel e in catList) {
+        exProvider.addNewFeature(
+          e.category,
+          e.color,
+          e.icon,
+        );
+      }
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final featureList = Provider.of<ExpensesProvider>(context).fList;
+
     bool hasData = false;
 
     if (widget.cModel.category != 'Selecciona Categoria') {
@@ -28,7 +53,7 @@ class _BsCategoryWidgetState extends State<BsCategoryWidget> {
     }
 
     return GestureDetector(
-      onTap: () => _categorySelected(),
+      onTap: () => _categorySelected(featureList),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -66,8 +91,7 @@ class _BsCategoryWidgetState extends State<BsCategoryWidget> {
     );
   }
 
-  _categorySelected() {
-    var catList = CategoryList().catList;
+  _categorySelected(List<FeaturesModel> fList) {
     _itemSelected(String category, String color) {
       setState(() {
         widget.cModel.category = category;
@@ -80,9 +104,9 @@ class _BsCategoryWidgetState extends State<BsCategoryWidget> {
       ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: catList.length,
+        itemCount: fList.length,
         itemBuilder: (_, i) {
-          var item = catList[i];
+          var item = fList[i];
           return ListTile(
             leading: Icon(
               item.icon.toIcon(),
@@ -113,6 +137,7 @@ class _BsCategoryWidgetState extends State<BsCategoryWidget> {
         ),
         onTap: () {
           Navigator.pop(context);
+          _createNewCategory();
         },
       ),
       ListTile(
@@ -145,6 +170,15 @@ class _BsCategoryWidgetState extends State<BsCategoryWidget> {
           children: _widgets,
         ),
       ),
+    );
+  }
+
+  _createNewCategory() {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      isDismissible: true,
+      context: context,
+      builder: (context) => CreateCategoryWiget(fModel: fModel,),
     );
   }
 }

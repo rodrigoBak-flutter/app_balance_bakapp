@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 //Privider
-import 'package:app_balances_bakapp/src/providers/ui_provider.dart';
+import 'package:app_balances_bakapp/src/providers/providers.dart';
 
 //Screens
 import 'package:app_balances_bakapp/src/screens/home_screen.dart';
@@ -13,9 +13,8 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(
     MultiProvider(providers: [
-      ChangeNotifierProvider(
-        create: (_) => UIProvider(),
-      ),
+      ChangeNotifierProvider(create: (_) => UIProvider()),
+      ChangeNotifierProvider(create: (_) => ExpensesProvider()),
     ], child: const MyApp()),
   );
 }

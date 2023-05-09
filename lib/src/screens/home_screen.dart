@@ -1,3 +1,4 @@
+import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,10 +27,12 @@ class _HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final uiProvider = Provider.of<UIProvider>(context);
+    final exProvider = Provider.of<ExpensesProvider>(context,listen: false);
     final currentIndex = uiProvider.bnbIndex;
 
     switch (currentIndex) {
       case 0:
+      exProvider.getAllFeatures();
         return const BalanceScreen();
       case 1:
         return const ChartsScreen();
