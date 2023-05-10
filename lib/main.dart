@@ -30,6 +30,8 @@ class MyApp extends StatelessWidget {
       //Idioma que se va a desplegar el calendario
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: const [
         // ignore: prefer_const_constructors

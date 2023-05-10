@@ -41,6 +41,8 @@ dependencies:
   provider:
   #BBDD
   sqflite: ^2.2.8+2
+  #Colores
+  flutter_material_color_picker: ^1.1.0+2
 
 dev_dependencies:
   flutter_test:
