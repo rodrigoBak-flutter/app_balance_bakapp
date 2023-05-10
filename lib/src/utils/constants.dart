@@ -1,6 +1,14 @@
 import 'package:flutter/widgets.dart';
 
 class Constants {
+  static bottomSheet() {
+    return const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(25),
+      ),
+    );
+  }
+
   static sheetBoxDecoration(Color color) {
     return BoxDecoration(
       color: color,

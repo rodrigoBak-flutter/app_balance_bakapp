@@ -18,8 +18,8 @@ class FeaturesModel {
   FeaturesModel({
     this.id ,
     this.category = '',
-    this.color = '',
-    this.icon = '',
+    this.color = '#baf748',
+    this.icon = 'apartment_rounded',
   });
 
   factory FeaturesModel.fromJson(Map<String, dynamic> json) => FeaturesModel(

@@ -51,6 +51,7 @@ class MyApp extends StatelessWidget {
         colorScheme: const ColorScheme.dark(primary: Colors.green),
         scaffoldBackgroundColor: Colors.grey[900],
         primaryColorDark: Colors.grey[850],
+        dividerColor: Colors.grey
       ),
       initialRoute: 'home',
       routes: {

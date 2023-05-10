@@ -1,5 +1,6 @@
 import 'package:app_balances_bakapp/src/models/models.dart';
 import 'package:app_balances_bakapp/src/providers/providers.dart';
+import 'package:app_balances_bakapp/src/utils/utils.dart';
 import 'package:app_balances_bakapp/src/utils/utils_colors.dart';
 import 'package:app_balances_bakapp/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -47,10 +48,6 @@ class _BsCategoryWidgetState extends State<BsCategoryWidget> {
     if (widget.cModel.category != 'Selecciona Categoria') {
       hasData = true;
     }
-    bool hasDataIcon = false;
-    if (widget.cModel.icon != '') {
-      hasDataIcon = true;
-    }
 
     return GestureDetector(
       onTap: () => _categorySelected(featureList),
@@ -59,9 +56,7 @@ class _BsCategoryWidgetState extends State<BsCategoryWidget> {
         child: Row(
           children: [
             Icon(
-              (hasDataIcon)
-                  ? widget.cModel.icon.toIcon()
-                  : Icons.category_outlined,
+              Icons.category_outlined,
               size: 35,
               color: (hasData) ? widget.cModel.color.toColor() : Colors.white,
             ),
@@ -158,15 +153,12 @@ class _BsCategoryWidgetState extends State<BsCategoryWidget> {
     final size = MediaQuery.of(context).size;
     showModalBottomSheet(
       isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(25),
-        ),
-      ),
+      shape: Constants.bottomSheet(),
       context: context,
       builder: (context) => SizedBox(
         height: size.height * 0.45,
         child: ListView(
+          physics: const BouncingScrollPhysics(),
           children: _widgets,
         ),
       ),
@@ -175,10 +167,13 @@ class _BsCategoryWidgetState extends State<BsCategoryWidget> {
 
   _createNewCategory() {
     showModalBottomSheet(
+      shape: Constants.bottomSheet(),
       isScrollControlled: true,
-      isDismissible: true,
+      isDismissible: false,
       context: context,
-      builder: (context) => CreateCategoryWiget(fModel: fModel,),
+      builder: (context) => CreateCategoryWiget(
+        fModel: fModel,
+      ),
     );
   }
 }
