@@ -29,21 +29,28 @@ class DBFeatures {
     });
   }
 
-  //Agreagar a mi BBDD
-  addNewFeature(FeaturesModel features) async{
+  //Agreagar/Guardar a mi BBDD
+  addNewFeature(FeaturesModel features) async {
     final db = await dataBase;
     final response = db.insert('Features', features.toJson());
     return response;
   }
 
   //Leer el contenido de mi BBDD
- Future<List<FeaturesModel>> getAllFeatures()async{
+  Future<List<FeaturesModel>> getAllFeatures() async {
     final db = await dataBase;
     final response = await db.query('Features');
-    List<FeaturesModel> fList = response.isNotEmpty ? response.map((e) => FeaturesModel.fromJson(e)).toList()
-    : [];
-    return fList; 
+    List<FeaturesModel> fList = response.isNotEmpty
+        ? response.map((e) => FeaturesModel.fromJson(e)).toList()
+        : [];
+    return fList;
   }
 
-
+  //Editar el contenido de mi BBDD
+  uddateFeatutes(FeaturesModel features) async {
+    final db = await dataBase;
+    final response = db.update('Features', features.toJson(),
+        where: 'id = ?', whereArgs: [features.id]);
+    return response;
+  }
 }

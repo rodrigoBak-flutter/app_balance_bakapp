@@ -43,6 +43,8 @@ dependencies:
   sqflite: ^2.2.8+2
   #Colores
   flutter_material_color_picker: ^1.1.0+2
+  #Toast
+  fluttertoast: ^8.2.1
 
 dev_dependencies:
   flutter_test:

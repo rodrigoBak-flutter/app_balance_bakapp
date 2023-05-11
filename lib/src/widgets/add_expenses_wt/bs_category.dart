@@ -2,6 +2,7 @@ import 'package:app_balances_bakapp/src/models/models.dart';
 import 'package:app_balances_bakapp/src/providers/providers.dart';
 import 'package:app_balances_bakapp/src/utils/utils.dart';
 import 'package:app_balances_bakapp/src/utils/utils_colors.dart';
+import 'package:app_balances_bakapp/src/widgets/add_expenses_wt/admin_category.dart';
 import 'package:app_balances_bakapp/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,11 +30,7 @@ class _BsCategoryWidgetState extends State<BsCategoryWidget> {
     var exProvider = Provider.of<ExpensesProvider>(context, listen: false);
     if (exProvider.fList.isEmpty) {
       for (FeaturesModel e in catList) {
-        exProvider.addNewFeature(
-          e.category,
-          e.color,
-          e.icon,
-        );
+        exProvider.addNewFeature(e);
       }
     }
     super.initState();
@@ -147,6 +144,7 @@ class _BsCategoryWidgetState extends State<BsCategoryWidget> {
         ),
         onTap: () {
           Navigator.pop(context);
+          _adminCategory();
         },
       ),
     ];
@@ -166,14 +164,29 @@ class _BsCategoryWidgetState extends State<BsCategoryWidget> {
   }
 
   _createNewCategory() {
+    var features = FeaturesModel(
+      id: fModel.id,
+      category: fModel.category,
+      color: fModel.color,
+      icon: fModel.icon,
+    );
     showModalBottomSheet(
       shape: Constants.bottomSheet(),
       isScrollControlled: true,
       isDismissible: false,
       context: context,
-      builder: (context) => CreateCategoryWiget(
-        fModel: fModel,
+      builder: (context) => CreateCategoryWidget(
+        fModel: features,
       ),
+    );
+  }
+
+  _adminCategory() {
+    showModalBottomSheet(
+      shape: Constants.bottomSheet(),
+      isDismissible: false,
+      context: context,
+      builder: (context) => const AdminCategoryWidget(),
     );
   }
 }

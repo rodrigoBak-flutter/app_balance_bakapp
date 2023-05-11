@@ -5,18 +5,30 @@ import 'package:app_balances_bakapp/src/utils/icon_list.dart';
 
 import 'package:app_balances_bakapp/src/utils/utils_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 import 'package:provider/provider.dart';
 
-class CreateCategoryWiget extends StatefulWidget {
+class CreateCategoryWidget extends StatefulWidget {
   final FeaturesModel fModel;
-  const CreateCategoryWiget({super.key, required this.fModel});
+  const CreateCategoryWidget({super.key, required this.fModel});
 
   @override
-  State<CreateCategoryWiget> createState() => _CreateCategoryWigetState();
+  State<CreateCategoryWidget> createState() => _CreateCategoryWidgetState();
 }
 
-class _CreateCategoryWigetState extends State<CreateCategoryWiget> {
+class _CreateCategoryWidgetState extends State<CreateCategoryWidget> {
+  bool hasData = false;
+  String stcCategory = '';
+  @override
+  void initState() {
+    if (widget.fModel.id != null) {
+      stcCategory = widget.fModel.category; //cacho el valor y no lo redibujo
+      hasData = true;
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final fList = Provider.of<ExpensesProvider>(context).fList;
@@ -31,19 +43,47 @@ class _CreateCategoryWigetState extends State<CreateCategoryWiget> {
     Iterable<FeaturesModel> contain;
     contain = fList.where((e) =>
         e.category.toLowerCase() == widget.fModel.category.toLowerCase());
-
+    //Condicion para agregar catgoria
     _addCategory() {
       if (contain.isNotEmpty) {
+        /*
+        Para poner emojis es: Windows + .
+         */
+        Fluttertoast.showToast(
+          msg: 'Ya existe esa categoria 🤷🏼‍♂️',
+          backgroundColor: Colors.red,
+          gravity: ToastGravity.CENTER,
+          fontSize: 20,
+        );
         print('Ya existe esa categoria');
       } else if (widget.fModel.category.isNotEmpty) {
-        exProvider.addNewFeature(
-          widget.fModel.category,
-          widget.fModel.color,
-          widget.fModel.icon,
-        );
+        exProvider.addNewFeature(widget.fModel);
         Navigator.pop(context);
-        print('Categoria guardada con exito');
+        Fluttertoast.showToast(msg: 'Categoria guardada con exito 😀');
+        print('Categoria guardada con exito ');
       } else {
+        Fluttertoast.showToast(msg: 'No olvides nombrar una categoria 😒');
+        print('No olvides nombrar una categoria ');
+      }
+    }
+
+    //Condicion para editar catgoria
+    _editCategory() {
+      if (widget.fModel.category.toLowerCase() == stcCategory.toLowerCase()) {
+        exProvider.updateFeatutes(widget.fModel);
+        Navigator.pop(context);
+        Fluttertoast.showToast(msg: 'Categoria editada con exito 😀');
+        print('Categoria editada con exito');
+      } else if (contain.isNotEmpty) {
+        Fluttertoast.showToast(msg: 'Ya existe esa categoria 🤷🏼‍♂️');
+        print('Ya existe esa categoria');
+      } else if (widget.fModel.category.isNotEmpty) {
+        exProvider.updateFeatutes(widget.fModel);
+        Navigator.pop(context);
+        Fluttertoast.showToast(msg: 'Categoria editada con exito 😀');
+        print('Categoria editada con exito');
+      } else {
+        Fluttertoast.showToast(msg: 'No olvides nombrar una categoria 😒');
         print('No olvides nombrar una categoria');
       }
     }
@@ -55,7 +95,7 @@ class _CreateCategoryWigetState extends State<CreateCategoryWiget> {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(bottom: viewInsets),
+              padding: EdgeInsets.only(bottom: viewInsets / 3),
               child: ListTile(
                 trailing: Icon(
                   Icons.text_fields_outlined,
@@ -133,7 +173,7 @@ class _CreateCategoryWigetState extends State<CreateCategoryWiget> {
                 ),
                 Expanded(
                   child: GestureDetector(
-                    onTap: () => _addCategory(),
+                    onTap: () => (hasData) ? _editCategory() : _addCategory(),
                     child: Constants.CustomButton(
                       Colors.green,
                       Colors.transparent,
