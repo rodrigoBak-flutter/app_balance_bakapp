@@ -1,4 +1,3 @@
-import 'package:app_balances_bakapp/src/models/features_model.dart';
 import 'package:app_balances_bakapp/src/models/models.dart';
 import 'package:app_balances_bakapp/src/providers/providers.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +5,7 @@ import 'package:flutter/material.dart';
 class ExpensesProvider extends ChangeNotifier {
   List<FeaturesModel> fList = [];
   List<ExpensesModel> eList = [];
+  List<CombinedModel> cList = [];
 
   /*
     
@@ -93,5 +93,33 @@ class ExpensesProvider extends ChangeNotifier {
 
   deleteExpenses(int id) async {
     await DBExpenses.db.deleteExpenses(id);
+  }
+
+  /*
+    
+  ------ GETERS para combinar Listas ------------
+
+  */
+
+  List<CombinedModel> get allItemsList {
+    List<CombinedModel> _cModel = [];
+    for (var x in eList) {
+      for (var y in fList) {
+        if (x.link == y.id) {
+          _cModel.add(CombinedModel(
+            category: y.category,
+            color: y.color,
+            icon: y.icon,
+            id: x.id,
+            amount: x.expense,
+            comment: x.comment,
+            day: x.day,
+            month: x.month,
+            year: x.year,
+          ));
+        }
+      }
+    }
+    return cList = [..._cModel];
   }
 }
