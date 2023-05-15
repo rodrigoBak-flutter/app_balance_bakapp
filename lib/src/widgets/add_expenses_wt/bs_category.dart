@@ -84,8 +84,9 @@ class _BsCategoryWidgetState extends State<BsCategoryWidget> {
   }
 
   _categorySelected(List<FeaturesModel> fList) {
-    _itemSelected(String category, String color) {
+    _itemSelected(String category, String color, int link) {
       setState(() {
+        widget.cModel.link = link;
         widget.cModel.category = category;
         widget.cModel.color = color;
         Navigator.pop(context);
@@ -110,6 +111,7 @@ class _BsCategoryWidgetState extends State<BsCategoryWidget> {
             onTap: () => _itemSelected(
               item.category,
               item.color,
+              item.id!
             ),
           );
         },

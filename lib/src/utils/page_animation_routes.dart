@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 class PageAnimationRoutes extends PageRouteBuilder {
   final Widget widget;
-  PageAnimationRoutes({required this.widget})
+  final double ejex;
+  final double ejey;
+  PageAnimationRoutes(
+      {required this.ejex, required this.ejey, required this.widget})
       : super(
           transitionDuration: const Duration(milliseconds: 2000),
           transitionsBuilder: (
@@ -22,7 +25,7 @@ class PageAnimationRoutes extends PageRouteBuilder {
               curve: Curves.easeOutBack,
             );
             return ScaleTransition(
-              alignment: const Alignment(0.8, 0.8),
+              alignment:  Alignment(ejex, ejey),
               scale: animation,
               child: widget,
             );

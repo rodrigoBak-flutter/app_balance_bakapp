@@ -1,4 +1,6 @@
+import 'package:app_balances_bakapp/src/screens/expenses_details.dart';
 import 'package:app_balances_bakapp/src/utils/constants.dart';
+import 'package:app_balances_bakapp/src/utils/page_animation_routes.dart';
 import 'package:flutter/material.dart';
 
 class BackSheetWidget extends StatelessWidget {
@@ -39,7 +41,17 @@ class BackSheetWidget extends StatelessWidget {
           const VerticalDivider(
             thickness: 2.0,
           ),
-          _headers('Gastos', '1,500.00', Colors.red),
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    PageAnimationRoutes(
+                      widget: const ExpensesDetailsScreen(),
+                      ejex: 0.5,
+                      ejey: -0.5,
+                    ));
+              },
+              child: _headers('Gastos', '1,500.00', Colors.red)),
         ],
       ),
     );

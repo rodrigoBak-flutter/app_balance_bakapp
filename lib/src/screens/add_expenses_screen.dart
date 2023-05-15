@@ -43,14 +43,7 @@ class AddExpensesScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: Center(
-                          child: GestureDetector(
-                            onTap: () {
-                              print('Comentario:' + cModel.comment);
-                              print('Cantidad Ingresada:' +
-                                  cModel.amount.toString());
-                            },
-                            child: Text('Btn Done'),
-                          ),
+                          child: SaveButtonWidget(cModel: cModel,)
                         ),
                       ),
                     ],

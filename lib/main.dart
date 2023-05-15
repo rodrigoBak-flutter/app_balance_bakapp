@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Balance',
       //Idioma que se va a desplegar el calendario
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -39,20 +39,19 @@ class MyApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.grey[900],
-        ),
-        bottomNavigationBarTheme:
-            const BottomNavigationBarThemeData(selectedItemColor: Colors.green),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Colors.green[800],
-          foregroundColor: Colors.white,
-        ),
-        colorScheme: const ColorScheme.dark(primary: Colors.green),
-        scaffoldBackgroundColor: Colors.grey[900],
-        primaryColorDark: Colors.grey[850],
-        dividerColor: Colors.grey
-      ),
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.grey[900],
+          ),
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+              selectedItemColor: Colors.green),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: Colors.green[800],
+            foregroundColor: Colors.white,
+          ),
+          colorScheme: const ColorScheme.dark(primary: Colors.green),
+          scaffoldBackgroundColor: Colors.grey[900],
+          primaryColorDark: Colors.grey[850],
+          dividerColor: Colors.grey),
       initialRoute: 'home',
       routes: {
         'home': (_) => const HomeScreen(),

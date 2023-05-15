@@ -60,6 +60,8 @@ class _FlowButtonWidgetState extends State<FlowButtonWidget>
             context,
             PageAnimationRoutes(
               widget: const AddExpensesScreen(),
+              ejex: 0.8,
+              ejey: 0.8
             ),
           ),
         ),
@@ -72,6 +74,8 @@ class _FlowButtonWidgetState extends State<FlowButtonWidget>
             context,
             PageAnimationRoutes(
               widget: const AddEntriesScreen(),
+              ejex: 0.8,
+              ejey: 0.8
             ),
           ),
         ),
