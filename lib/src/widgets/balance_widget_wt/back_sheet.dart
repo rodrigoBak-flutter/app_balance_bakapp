@@ -1,3 +1,4 @@
+import 'package:app_balances_bakapp/src/screens/entries_details.dart';
 import 'package:app_balances_bakapp/src/screens/expenses_details.dart';
 import 'package:app_balances_bakapp/src/utils/constants.dart';
 import 'package:app_balances_bakapp/src/utils/page_animation_routes.dart';
@@ -37,7 +38,17 @@ class BackSheetWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _headers('Ingresos', '3,500.00', Colors.green),
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    PageAnimationRoutes(
+                      widget: const EntriesDetailsScreen(),
+                      ejex: -0.5,
+                      ejey: -0.5,
+                    ));
+              },
+              child: _headers('Ingresos', '3,500.00', Colors.green)),
           const VerticalDivider(
             thickness: 2.0,
           ),

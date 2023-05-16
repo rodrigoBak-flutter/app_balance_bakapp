@@ -1,3 +1,5 @@
+export 'package:app_balances_bakapp/src/widgets/add_entries_wt/save_button_widget.dart';
+
 export 'package:app_balances_bakapp/src/widgets/balance_widget_wt/month_selector.dart';
 
 export 'package:app_balances_bakapp/src/widgets/balance_widget_wt/flayer_categories.dart';
@@ -27,3 +29,5 @@ export 'package:app_balances_bakapp/src/widgets/balance_widget_wt/front_sheet.da
 export 'package:app_balances_bakapp/src/widgets/balance_widget_wt/back_sheet.dart';
 
 export 'package:app_balances_bakapp/src/widgets/home_screen_wt/custom_navigation_bar.dart';
+
+

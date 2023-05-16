@@ -5,9 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
-class SaveButtonWidget extends StatelessWidget {
+/*
+  Pendiente agregarle el LINK para poder seleccionar una categoria de ingresos
+ */
+
+class SaveButtonEntriesWidget extends StatelessWidget {
   final CombinedModel cModel;
-  const SaveButtonWidget({super.key, required this.cModel});
+  const SaveButtonEntriesWidget({super.key, required this.cModel});
 
   @override
   Widget build(BuildContext context) {
@@ -17,25 +21,28 @@ class SaveButtonWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         //Condiciones por si el usuario guarda todo vacio
-        if (cModel.amount != 0.0 && cModel.link != null) {
-          exProvider.addNewExpenes(cModel);
+        // if (cModel.amount != 0.0 && cModel.link != null) {
+        if (cModel.amount != 0.0) {
+          exProvider.addNewEntries(cModel);
           Fluttertoast.showToast(
-              msg: 'Gasto agregado 👌',
+              msg: 'Ingreso agregado 👌',
               backgroundColor: Colors.green,
               textColor: Colors.white);
           uiProvider.bnbIndex = 0;
           Navigator.pop(context);
         } else if (cModel.amount == 0.0) {
           Fluttertoast.showToast(
-              msg: 'Debes agregar el monto de tu Gasto 😒',
+              msg: 'Debes agregar el monto de tu Ingreso 😒',
               backgroundColor: Colors.yellow,
               textColor: Colors.black);
-        } else {
+        } /*
+          else {
           Fluttertoast.showToast(
               msg: 'Debes seleccionar una categoria 😒',
               backgroundColor: Colors.yellow,
               textColor: Colors.black);
         }
+         */
       },
       child: SizedBox(
         height: size.height * 0.1,

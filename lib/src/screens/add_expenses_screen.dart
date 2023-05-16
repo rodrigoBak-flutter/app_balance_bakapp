@@ -20,7 +20,10 @@ class AddExpensesScreen extends StatelessWidget {
        */
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            centerTitle: true,
+            title:const Text('Agregar Gasto'),
+          ),
           body: Column(
             children: [
               BSNumKeyboardWidget(

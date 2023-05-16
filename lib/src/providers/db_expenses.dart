@@ -3,6 +3,12 @@ import 'package:path/path.dart';
 
 import 'package:app_balances_bakapp/src/models/models.dart';
 
+
+/*
+  Aca se encuentras las Base de Datos para llamar a los Gastos y a los ingresos, y sus respectivo CRUD
+
+*/
+
 class DBExpenses {
   static Database? _dataBase;
   static final DBExpenses db = DBExpenses._();
@@ -17,11 +23,11 @@ class DBExpenses {
 
   iniDB() async {
     var dataBasePath = await getDatabasesPath();
-    //FeatureDB.db es la ruta en donde se va a guardar mi BBDD
+    //ExpensesDB.db es la ruta en donde se va a guardar mi BBDD
     String path = join(dataBasePath, 'ExpensesDB.db');
     return await openDatabase(path, version: 1,
         onCreate: (Database db, int version) async {
-      //TABLA de Gastos
+      //TABLA de Gastos, BBDD
       await db.execute('''CREATE TABLE Expenses (
             id INTEGER PRIMARY KEY, 
             link INTEGER, 
@@ -31,7 +37,7 @@ class DBExpenses {
             comment TEXT, 
             expense DOUBLE        
             )''');
-      //TABLA de Entradas
+      //TABLA de Entradas, BBDD
       await db.execute('''CREATE TABLE Entries (
             id INTEGER PRIMARY KEY, 
             day INTEGER,
@@ -43,12 +49,19 @@ class DBExpenses {
     });
   }
 
+  /*
+  
+    --------- Funciones de Gastos ------------------
+
+  */
+
+  //Funcion que agrega Gastos
   addExpenses(ExpensesModel exp) async {
     final db = await dataBase;
     final response = await db.insert('Expenses', exp.toJson());
     return response;
   }
-
+  //Funcion que lee Gastos
   Future<List<ExpensesModel>> getExpenseByDate(int month, int year) async {
     final db = await dataBase;
     final response = await db.query('Expenses',
@@ -58,17 +71,58 @@ class DBExpenses {
         : [];
     return eList;
   }
-
+  //Funcion que actualizar Gastos
   Future<int> updateExpenses(ExpensesModel exp) async {
     final db = await dataBase;
     final response = await db
         .update('Expenses', exp.toJson(), where: 'id = ?', whereArgs: []);
     return response;
   }
-
+  //Funcion que eliminar Gastos
   Future<int> deleteExpenses(int id) async {
     final db = await dataBase;
     final response = db.delete('Expenses', where: 'id = ?', whereArgs: [id]);
+    return response;
+  }
+
+
+
+
+  /*
+  
+    --------- Funciones de Ingresos ------------------
+
+  */
+
+  //Funcion que agregar Ingresos
+  addEntries(EntriesModel ent) async {
+    final db = await dataBase;
+    final response = await db.insert('Entries', ent.toJson());
+    return response;
+  }
+
+  //Funcion que lee Ingresos
+  Future<List<EntriesModel>> getEntriesByDate(int month, int year) async {
+    final db = await dataBase;
+    final response = await db.query('Entries',
+        where: "month = ? and year = ?", whereArgs: [month, year]);
+    List<EntriesModel> eList = response.isNotEmpty
+        ? response.map((e) => EntriesModel.fromJson(e)).toList()
+        : [];
+    return eList;
+  }
+
+  //Funcion que actualizar Ingresos
+  Future<int> updateEntries(EntriesModel exp) async {
+    final db = await dataBase;
+    final response = await db
+        .update('Entries', exp.toJson(), where: 'id = ?', whereArgs: []);
+    return response;
+  }
+  //Funcion que eliminar Ingresos
+  Future<int> deleteEntries(int id) async {
+    final db = await dataBase;
+    final response = db.delete('Entries', where: 'id = ?', whereArgs: [id]);
     return response;
   }
 }

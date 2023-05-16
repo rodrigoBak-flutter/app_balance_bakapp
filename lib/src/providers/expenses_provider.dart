@@ -4,9 +4,17 @@ import 'package:app_balances_bakapp/src/models/models.dart';
 import 'package:app_balances_bakapp/src/providers/providers.dart';
 import 'package:flutter/material.dart';
 
+/*
+  Aca se encuentras las Funciones para llamar a los Gastos y a los ingresos, mediente mi provider
+
+  A los ingresos le falta actualizar y eliminar( Hacer funciones)
+
+*/
+
 class ExpensesProvider extends ChangeNotifier {
   List<FeaturesModel> fList = [];
   List<ExpensesModel> eList = [];
+  List<EntriesModel> etList = [];
   List<CombinedModel> cList = [];
 
   /*
@@ -15,7 +23,7 @@ class ExpensesProvider extends ChangeNotifier {
 
   */
 
-  //Agregar/Guardas Gastos en BBDD
+  //Agregar/Guardar Gastos en BBDD
   addNewExpenes(CombinedModel cModel) async {
     var expenses = ExpensesModel(
       link: cModel.link,
@@ -31,7 +39,22 @@ class ExpensesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //Agregar/Guardas Categorias en BBDD
+  //Agregar Ingresos en la BBDD
+  addNewEntries(CombinedModel cModel) async {
+    var entries = EntriesModel(
+      day: cModel.day,
+      month: cModel.month,
+      year: cModel.year,
+      comment: cModel.comment,
+      entries: cModel.amount,
+    );
+    final id = await DBExpenses.db.addEntries(entries);
+    entries.id = id;
+    etList.add(entries);
+    notifyListeners();
+  }
+
+  //Agregar/Guardar Categorias en BBDD
   addNewFeature(FeaturesModel newFeatures) async {
     final id = await DBFeatures.db.addNewFeature(newFeatures);
     newFeatures.id = id;
@@ -49,6 +72,13 @@ class ExpensesProvider extends ChangeNotifier {
   getExpensesByDate(int month, int year) async {
     final response = await DBExpenses.db.getExpenseByDate(month, year);
     eList = [...response];
+    notifyListeners();
+  }
+
+  //Leer Ingresos en BBDD
+  getEntriesByDate(int month, int year) async {
+    final response = await DBExpenses.db.getEntriesByDate(month, year);
+    etList = [...response];
     notifyListeners();
   }
 

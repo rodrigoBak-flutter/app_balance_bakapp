@@ -49,7 +49,7 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
         slivers: [
           SliverAppBar(
             expandedHeight: 150,
-            title: Text('Desglose de gastos'),
+            title: const Text('Desglose de gastos'),
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Align(
@@ -67,7 +67,8 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
               height: 20,
               color: Theme.of(context).scaffoldBackgroundColor,
               child: Container(
-                decoration: Constants.sheetBoxDecoration(Theme.of(context).primaryColorDark),
+                decoration: Constants.sheetBoxDecoration(
+                    Theme.of(context).primaryColorDark),
               ),
             ),
           ),

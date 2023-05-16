@@ -1,8 +1,9 @@
 import 'dart:math';
 
-import 'package:app_balances_bakapp/src/providers/providers.dart';
-import 'package:app_balances_bakapp/src/widgets/balance_widget_wt/flowBoton_widget.dart';
 import 'package:flutter/material.dart';
+
+//Provider
+import 'package:app_balances_bakapp/src/providers/providers.dart';
 
 //Widgets
 import 'package:app_balances_bakapp/src/widgets/widgets.dart';
@@ -63,8 +64,9 @@ class _BalanceScreenState extends State<BalanceScreen> {
     }
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton:
-          (disableFAB) ? const Text('Ya no puede agregar mas ingresos, ni egresos') : FlowButtonWidget(),
+      floatingActionButton: (disableFAB)
+          ? const Text('Ya no puede agregar mas ingresos, ni egresos')
+          : FlowButtonWidget(),
       body: CustomScrollView(
         controller: _scrollControler,
         physics: const BouncingScrollPhysics(),
