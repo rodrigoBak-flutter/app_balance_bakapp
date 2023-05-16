@@ -10,6 +10,11 @@ import 'package:app_balances_bakapp/src/providers/providers.dart';
 import 'package:app_balances_bakapp/src/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
+/*
+  Sacar de BalanceScreen la condicion de que en Diciembre ya no puedo cargar mas gatos e ingresos :)
+
+ */
+
 void main() {
   runApp(
     MultiProvider(providers: [

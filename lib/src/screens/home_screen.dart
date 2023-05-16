@@ -27,14 +27,15 @@ class _HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final uiProvider = Provider.of<UIProvider>(context);
-    final exProvider = Provider.of<ExpensesProvider>(context,listen: false);
+    final exProvider = Provider.of<ExpensesProvider>(context, listen: false);
     final DateTime _date = DateTime.now();
     final currentIndex = uiProvider.bnbIndex;
+    final currentMonth = uiProvider.selectedMonth + 1;
 
     switch (currentIndex) {
       case 0:
-      exProvider.getExpensesByDate(_date.month, _date.year);
-      exProvider.getAllFeatures();
+        exProvider.getExpensesByDate(currentMonth, _date.year);
+        exProvider.getAllFeatures();
         return const BalanceScreen();
       case 1:
         return const ChartsScreen();

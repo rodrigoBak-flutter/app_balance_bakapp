@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app_balances_bakapp/src/models/models.dart';
 import 'package:app_balances_bakapp/src/providers/providers.dart';
 import 'package:flutter/material.dart';
@@ -120,6 +122,36 @@ class ExpensesProvider extends ChangeNotifier {
         }
       }
     }
+    return cList = [..._cModel];
+  }
+
+  List<CombinedModel> get groupItemsList {
+    List<CombinedModel> _cModel = [];
+    for (var x in eList) {
+      for (var y in fList) {
+        if (x.link == y.id) {
+          double _amount = eList
+              .where((e) => e.link == y.id)
+              .fold(0.0, (a, b) => a + b.expense);
+          _cModel.add(CombinedModel(
+            category: y.category,
+            color: y.color,
+            icon: y.icon,
+            amount: _amount,
+          ));
+        }
+      }
+    }
+
+    /*
+     -------Funcion para agrupar los elementos identicos, transformando todo en String -------------------
+           Ejemplo: categoria con categoria, color con color, icono con icono,etc
+     */
+    var encode = _cModel.map((e) => jsonEncode(e));
+    var unique = encode.toSet();
+    var result = unique.map((e) => jsonDecode(e));
+    _cModel = result.map((e) => CombinedModel.fromJson(e)).toList();
+
     return cList = [..._cModel];
   }
 }

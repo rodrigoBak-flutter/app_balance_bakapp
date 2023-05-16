@@ -1,5 +1,6 @@
 import 'package:app_balances_bakapp/src/models/combined_model.dart';
 import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
+import 'package:app_balances_bakapp/src/providers/providers.dart';
 import 'package:app_balances_bakapp/src/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -12,6 +13,7 @@ class SaveButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final exProvider = Provider.of<ExpensesProvider>(context, listen: false);
+    final uiProvider = Provider.of<UIProvider>(context, listen: false);
     final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
@@ -19,10 +21,10 @@ class SaveButtonWidget extends StatelessWidget {
         if (cModel.amount != 0.0 && cModel.link != null) {
           exProvider.addNewExpenes(cModel);
           Fluttertoast.showToast(
-              gravity: ToastGravity.CENTER,
               msg: 'Gasto agregado 👌',
               backgroundColor: Colors.green,
               textColor: Colors.white);
+          uiProvider.bnbIndex = 0;
           Navigator.pop(context);
         } else if (cModel.amount == 0.0) {
           Fluttertoast.showToast(

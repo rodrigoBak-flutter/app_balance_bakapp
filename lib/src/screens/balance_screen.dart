@@ -1,10 +1,12 @@
 import 'dart:math';
 
+import 'package:app_balances_bakapp/src/providers/providers.dart';
 import 'package:app_balances_bakapp/src/widgets/balance_widget_wt/flowBoton_widget.dart';
 import 'package:flutter/material.dart';
 
 //Widgets
 import 'package:app_balances_bakapp/src/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class BalanceScreen extends StatefulWidget {
   const BalanceScreen({super.key});
@@ -17,6 +19,8 @@ class _BalanceScreenState extends State<BalanceScreen> {
   //Controlador de la animacion
   final _scrollControler = ScrollController();
   double _offset = 0;
+
+  bool disableFAB = false; // Aqui declaro un booleano
 
   void _listener() {
     setState(() {
@@ -46,20 +50,33 @@ class _BalanceScreenState extends State<BalanceScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final eList = context.watch<ExpensesProvider>().eList;
+    final etList = context.watch<ExpensesProvider>().eList;
+    final month = context.watch<UIProvider>().selectedMonth +
+        1; // Aqui mando llamar al provider month
+
+    ///// Aqui coloco la condicion ///////
+    if (month == 12) {
+      disableFAB = true;
+    } else {
+      disableFAB = false;
+    }
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FlowButtonWidget(),
+      floatingActionButton:
+          (disableFAB) ? const Text('Ya no puede agregar mas ingresos, ni egresos') : FlowButtonWidget(),
       body: CustomScrollView(
         controller: _scrollControler,
         physics: const BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
             elevation: 0.0,
-            expandedHeight: size.height * 0.15,
+            expandedHeight: size.height * 0.20,
             flexibleSpace: FlexibleSpaceBar(
               background: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
+                  MonthSelectorWidget(),
                   Text(
                     '2,500',
                     style: TextStyle(
