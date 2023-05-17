@@ -1,6 +1,8 @@
-import 'package:app_balances_bakapp/src/providers/providers.dart';
 import 'package:flutter/material.dart';
+
+//Providers
 import 'package:provider/provider.dart';
+import 'package:app_balances_bakapp/src/providers/providers.dart';
 
 class MonthSelectorWidget extends StatelessWidget {
   const MonthSelectorWidget({super.key});

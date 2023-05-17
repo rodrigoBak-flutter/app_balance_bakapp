@@ -1,6 +1,10 @@
-import 'package:app_balances_bakapp/src/models/combined_model.dart';
-import 'package:app_balances_bakapp/src/utils/utils.dart';
 import 'package:flutter/material.dart';
+
+//Utils
+import 'package:app_balances_bakapp/src/utils/utils.dart';
+
+//Models
+import 'package:app_balances_bakapp/src/models/combined_model.dart';
 
 class BSNumKeyboardWidget extends StatefulWidget {
   final CombinedModel cModel;

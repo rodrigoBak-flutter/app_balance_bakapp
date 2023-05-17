@@ -1,13 +1,15 @@
-import 'package:app_balances_bakapp/src/models/models.dart';
-import 'package:app_balances_bakapp/src/providers/providers.dart';
-import 'package:app_balances_bakapp/src/utils/constants.dart';
-import 'package:app_balances_bakapp/src/utils/icon_list.dart';
-
-import 'package:app_balances_bakapp/src/utils/utils_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+//Provider
+import 'package:app_balances_bakapp/src/providers/providers.dart';
 import 'package:provider/provider.dart';
+//Utils
+import 'package:app_balances_bakapp/src/utils/utils.dart';
+import 'package:app_balances_bakapp/src/utils/utils_colors.dart';
+//Models
+import 'package:app_balances_bakapp/src/models/models.dart';
 
 class CreateCategoryWidget extends StatefulWidget {
   final FeaturesModel fModel;

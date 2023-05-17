@@ -1,5 +1,6 @@
-import 'package:app_balances_bakapp/src/models/combined_model.dart';
 import 'package:flutter/material.dart';
+//Models
+import 'package:app_balances_bakapp/src/models/models.dart';
 
 class DatePicketWidget extends StatefulWidget {
   final CombinedModel cModel;
@@ -70,7 +71,7 @@ class _DatePicketWidgetState extends State<DatePicketWidget> {
         cancelText: 'Volver',
         confirmText: 'Guardar fecha ',
          */
-        helpText: 'Seleccionar fecha del gasto', 
+        helpText: 'Seleccionar fecha del gasto',
         cancelText: 'Volver',
         confirmText: 'Guardar fecha ',
       ).then((value) => setState(() {

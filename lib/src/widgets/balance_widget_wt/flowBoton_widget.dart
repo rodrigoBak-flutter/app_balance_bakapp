@@ -1,8 +1,11 @@
-import 'package:app_balances_bakapp/src/screens/screens.dart';
-import 'package:app_balances_bakapp/src/widgets/balance_widget_wt/flow_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../utils/utils.dart';
+//Widgets
+import 'package:app_balances_bakapp/src/widgets/widgets.dart';
+//Screens
+import 'package:app_balances_bakapp/src/screens/screens.dart';
+//Utils
+import 'package:app_balances_bakapp/src/utils/utils.dart';
 
 class FlowButtonWidget extends StatefulWidget {
   @override
@@ -59,10 +62,7 @@ class _FlowButtonWidgetState extends State<FlowButtonWidget>
           onPressed: () => Navigator.push(
             context,
             PageAnimationRoutes(
-              widget: const AddExpensesScreen(),
-              ejex: 0.8,
-              ejey: 0.8
-            ),
+                widget: const AddExpensesScreen(), ejex: 0.8, ejey: 0.8),
           ),
         ),
         FloatingActionButton(
@@ -73,10 +73,7 @@ class _FlowButtonWidgetState extends State<FlowButtonWidget>
           onPressed: () => Navigator.push(
             context,
             PageAnimationRoutes(
-              widget: const AddEntriesScreen(),
-              ejex: 0.8,
-              ejey: 0.8
-            ),
+                widget: const AddEntriesScreen(), ejex: 0.8, ejey: 0.8),
           ),
         ),
       ],

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-//Providers current
-import 'package:app_balances_bakapp/src/providers/ui_provider.dart';
+//Providers
+import 'package:provider/provider.dart';
+import 'package:app_balances_bakapp/src/providers/providers.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({super.key});

@@ -1,10 +1,11 @@
-import 'package:app_balances_bakapp/src/utils/icon_list.dart';
 import 'package:flutter/material.dart';
+
+import 'package:app_balances_bakapp/src/utils/utils.dart';
 
 extension ColorExtension on String {
   toColor() {
     String hexColor = replaceAll('#', '');
-    if(hexColor.length == 6) {
+    if (hexColor.length == 6) {
       hexColor = 'FF' + hexColor;
     }
     if (hexColor.length == 8) {

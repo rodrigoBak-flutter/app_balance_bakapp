@@ -1,4 +1,4 @@
-import 'package:app_balances_bakapp/src/models/combined_model.dart';
+import 'package:app_balances_bakapp/src/models/models.dart';
 import 'package:flutter/material.dart';
 
 class CommentBoxWidget extends StatelessWidget {
@@ -22,7 +22,6 @@ class CommentBoxWidget extends StatelessWidget {
           ),
           Expanded(
             child: TextFormField(
-              
               initialValue: _text,
               cursorColor: Colors.green,
               keyboardType: TextInputType.text,
@@ -43,7 +42,7 @@ class CommentBoxWidget extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.green),
                 ),
               ),
-              onChanged: (txt)=>cModel.comment = txt,
+              onChanged: (txt) => cModel.comment = txt,
             ),
           ),
         ],

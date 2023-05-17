@@ -1,10 +1,15 @@
+import 'package:flutter/material.dart';
+
+//Widget
+import 'package:app_balances_bakapp/src/widgets/widgets.dart';
+//Provider
+import 'package:provider/provider.dart';
+import 'package:app_balances_bakapp/src/providers/providers.dart';
+//Model
 import 'package:app_balances_bakapp/src/models/features_model.dart';
-import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
+//Utils
 import 'package:app_balances_bakapp/src/utils/constants.dart';
 import 'package:app_balances_bakapp/src/utils/utils_colors.dart';
-import 'package:app_balances_bakapp/src/widgets/add_expenses_wt/create_category.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class AdminCategoryWidget extends StatelessWidget {
   const AdminCategoryWidget({super.key});
@@ -42,7 +47,6 @@ class AdminCategoryWidget extends StatelessWidget {
       category: fModel.category,
       color: fModel.color,
       icon: fModel.icon,
-
     );
     showModalBottomSheet(
       shape: Constants.bottomSheet(),

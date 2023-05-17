@@ -1,13 +1,13 @@
-import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 //Screens
 import 'package:app_balances_bakapp/src/screens/screens.dart';
 //Widgets
 import 'package:app_balances_bakapp/src/widgets/home_screen_wt/custom_navigation_bar.dart';
 //Providers
+import 'package:provider/provider.dart';
 import 'package:app_balances_bakapp/src/providers/ui_provider.dart';
+import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

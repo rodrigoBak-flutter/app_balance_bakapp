@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final combinedModel = combinedModelFromJson(jsonString);
-
 import 'dart:convert';
 
 CombinedModel combinedModelFromJson(String str) =>

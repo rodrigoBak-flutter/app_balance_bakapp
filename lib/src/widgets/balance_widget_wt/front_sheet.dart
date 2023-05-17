@@ -1,8 +1,12 @@
-import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
-import 'package:app_balances_bakapp/src/utils/constants.dart';
-import 'package:app_balances_bakapp/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+
+//Providers
 import 'package:provider/provider.dart';
+import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
+//Widgets
+import 'package:app_balances_bakapp/src/widgets/widgets.dart';
+//Utils
+import 'package:app_balances_bakapp/src/utils/constants.dart';
 
 class FrontSheetWidget extends StatelessWidget {
   const FrontSheetWidget({super.key});
@@ -48,9 +52,8 @@ class FrontSheetWidget extends StatelessWidget {
                   ),
                   Container(
                     padding: const EdgeInsets.all(80),
-                     child: Image.asset('assets/empty.png'),
+                    child: Image.asset('assets/empty.png'),
                   ),
-                  
                 ],
               ));
   }

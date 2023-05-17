@@ -1,9 +1,10 @@
-import 'package:app_balances_bakapp/src/models/combined_model.dart';
 import 'package:flutter/material.dart';
 //Utils
 import 'package:app_balances_bakapp/src/utils/utils.dart';
 //Widgets
 import '../widgets/widgets.dart';
+//Model
+import 'package:app_balances_bakapp/src/models/combined_model.dart';
 
 class AddExpensesScreen extends StatelessWidget {
   const AddExpensesScreen({super.key});
@@ -11,7 +12,7 @@ class AddExpensesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CombinedModel cModel = CombinedModel();
-     bool hasData = false;
+    bool hasData = false;
 
     final editCModel =
         ModalRoute.of(context)!.settings.arguments as CombinedModel?;
@@ -31,7 +32,9 @@ class AddExpensesScreen extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: (hasData) ? const Text('Editar Gasto') : const Text('Agregar Gasto'),
+            title: (hasData)
+                ? const Text('Editar Gasto')
+                : const Text('Agregar Gasto'),
           ),
           body: Column(
             children: [

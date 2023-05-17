@@ -1,10 +1,13 @@
-import 'package:app_balances_bakapp/src/models/combined_model.dart';
-import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
-import 'package:app_balances_bakapp/src/utils/math_operations.dart';
-import 'package:app_balances_bakapp/src/utils/utils_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
+
+//Providers
 import 'package:provider/provider.dart';
+import 'package:app_balances_bakapp/src/providers/providers.dart';
+//Models
+import 'package:app_balances_bakapp/src/models/combined_model.dart';
+//Utils
+import 'package:app_balances_bakapp/src/utils/utils_colors.dart';
 
 class FlayerCategoriesWidget extends StatelessWidget {
   const FlayerCategoriesWidget({super.key});

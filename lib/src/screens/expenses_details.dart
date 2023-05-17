@@ -1,12 +1,17 @@
-import 'package:app_balances_bakapp/src/models/combined_model.dart';
-import 'package:app_balances_bakapp/src/providers/providers.dart';
-import 'package:app_balances_bakapp/src/utils/constants.dart';
-import 'package:app_balances_bakapp/src/utils/math_operations.dart';
-import 'package:app_balances_bakapp/src/utils/utils_colors.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+//Provider
 import 'package:provider/provider.dart';
+import 'package:app_balances_bakapp/src/providers/providers.dart';
+//Utils
+import 'package:app_balances_bakapp/src/utils/constants.dart';
+import 'package:app_balances_bakapp/src/utils/utils_colors.dart';
+import 'package:app_balances_bakapp/src/utils/math_operations.dart';
+//Model
+import 'package:app_balances_bakapp/src/models/combined_model.dart';
 
 class ExpensesDetailsScreen extends StatefulWidget {
   const ExpensesDetailsScreen({super.key});

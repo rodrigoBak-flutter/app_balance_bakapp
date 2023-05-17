@@ -1,9 +1,10 @@
-import 'package:app_balances_bakapp/src/models/combined_model.dart';
 import 'package:flutter/material.dart';
 //Utils
 import 'package:app_balances_bakapp/src/utils/utils.dart';
 //Widgets
 import '../widgets/widgets.dart';
+//Model
+import 'package:app_balances_bakapp/src/models/combined_model.dart';
 
 class AddEntriesScreen extends StatelessWidget {
   const AddEntriesScreen({super.key});

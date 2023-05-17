@@ -1,6 +1,8 @@
-import 'package:app_balances_bakapp/src/models/features_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+
+//Model
+import 'package:app_balances_bakapp/src/models/features_model.dart';
 
 class DBFeatures {
   static Database? _dataBase;

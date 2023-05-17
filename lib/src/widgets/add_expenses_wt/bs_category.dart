@@ -1,11 +1,15 @@
+import 'package:flutter/material.dart';
+
+//Model
 import 'package:app_balances_bakapp/src/models/models.dart';
+//Provider
+import 'package:provider/provider.dart';
 import 'package:app_balances_bakapp/src/providers/providers.dart';
+//Widgets
+import 'package:app_balances_bakapp/src/widgets/widgets.dart';
+//Utils
 import 'package:app_balances_bakapp/src/utils/utils.dart';
 import 'package:app_balances_bakapp/src/utils/utils_colors.dart';
-import 'package:app_balances_bakapp/src/widgets/add_expenses_wt/admin_category.dart';
-import 'package:app_balances_bakapp/src/widgets/widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class BsCategoryWidget extends StatefulWidget {
   final CombinedModel cModel;
@@ -108,11 +112,7 @@ class _BsCategoryWidgetState extends State<BsCategoryWidget> {
             ),
             title: Text(item.category),
             trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () => _itemSelected(
-              item.category,
-              item.color,
-              item.id!
-            ),
+            onTap: () => _itemSelected(item.category, item.color, item.id!),
           );
         },
       ),

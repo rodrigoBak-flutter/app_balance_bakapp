@@ -1,7 +1,10 @@
-import 'package:app_balances_bakapp/src/models/combined_model.dart';
-import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
 import 'package:flutter/material.dart';
+
+//Provider
 import 'package:provider/provider.dart';
+import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
+//Model
+import 'package:app_balances_bakapp/src/models/combined_model.dart';
 
 class CategoriesDetailScreen extends StatefulWidget {
   const CategoriesDetailScreen({super.key});
@@ -16,7 +19,7 @@ class _CategoriesDetailScreenState extends State<CategoriesDetailScreen> {
     var cList = Provider.of<ExpensesProvider>(context).allItemsList;
     final cModel = ModalRoute.of(context)!.settings.arguments as CombinedModel?;
 
-   cList = cList.where((e) => e.category == cModel!.category).toList();
+    cList = cList.where((e) => e.category == cModel!.category).toList();
 
     return Scaffold(
       body: CustomScrollView(
@@ -25,15 +28,12 @@ class _CategoriesDetailScreenState extends State<CategoriesDetailScreen> {
             title: Text(cModel!.category),
           ),
           SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, i) {
-                var item = cList[i];
-                return ListTile(
-                  title: Text(item.category),
-                );
-              },
-              childCount: cList.length
-            ),
+            delegate: SliverChildBuilderDelegate((context, i) {
+              var item = cList[i];
+              return ListTile(
+                title: Text(item.category),
+              );
+            }, childCount: cList.length),
           )
         ],
       ),

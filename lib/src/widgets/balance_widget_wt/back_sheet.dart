@@ -1,11 +1,12 @@
-import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
-import 'package:app_balances_bakapp/src/screens/entries_details.dart';
-import 'package:app_balances_bakapp/src/screens/expenses_details.dart';
-import 'package:app_balances_bakapp/src/utils/constants.dart';
-import 'package:app_balances_bakapp/src/utils/math_operations.dart';
-import 'package:app_balances_bakapp/src/utils/page_animation_routes.dart';
 import 'package:flutter/material.dart';
+//Screens
+import 'package:app_balances_bakapp/src/screens/screens.dart';
+//Provider
 import 'package:provider/provider.dart';
+import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
+//Utils
+import 'package:app_balances_bakapp/src/utils/math_operations.dart';
+import 'package:app_balances_bakapp/src/utils/utils.dart';
 
 class BackSheetWidget extends StatelessWidget {
   const BackSheetWidget({super.key});

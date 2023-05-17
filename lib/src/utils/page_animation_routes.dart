@@ -20,12 +20,12 @@ class PageAnimationRoutes extends PageRouteBuilder {
               /*
                    Los Curves son las diferentes 
                    tipos de transiciones de pantalla    
-                   */
+               */
               //
               curve: Curves.easeOutBack,
             );
             return ScaleTransition(
-              alignment:  Alignment(ejex, ejey),
+              alignment: Alignment(ejex, ejey),
               scale: animation,
               child: widget,
             );

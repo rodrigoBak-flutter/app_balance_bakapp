@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final featuresModel = featuresModelFromJson(jsonString);
-
 import 'dart:convert';
 
 FeaturesModel featuresModelFromJson(String str) =>
@@ -10,13 +6,13 @@ FeaturesModel featuresModelFromJson(String str) =>
 String featuresModelToJson(FeaturesModel data) => json.encode(data.toJson());
 
 class FeaturesModel {
-  int ?id;
+  int? id;
   String category;
   String color;
   String icon;
 
   FeaturesModel({
-    this.id ,
+    this.id,
     this.category = '',
     this.color = '#baf748',
     this.icon = 'apartment_rounded',
