@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:app_balances_bakapp/src/utils/math_operations.dart';
 import 'package:flutter/material.dart';
 
 //Provider
@@ -51,9 +52,9 @@ class _BalanceScreenState extends State<BalanceScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final eList = context.watch<ExpensesProvider>().eList;
-    final etList = context.watch<ExpensesProvider>().eList;
-    final month = context.watch<UIProvider>().selectedMonth +
+    final eList = context.watch<ExpensesProvider>().eList; //tambien se puede llamar al provider asi:
+    final etList = context.watch<ExpensesProvider>().etList;// final etList = Provider.of<ExpensesProvider>(context).etList
+    final month = context.watch<UIProvider>().selectedMonth + // watch es que los lisen = true // read es que los lisen = false
         1; // Aqui mando llamar al provider month
 
     ///// Aqui coloco la condicion ///////
@@ -77,16 +78,16 @@ class _BalanceScreenState extends State<BalanceScreen> {
             flexibleSpace: FlexibleSpaceBar(
               background: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  MonthSelectorWidget(),
+                children:  [
+                 const MonthSelectorWidget(),
                   Text(
-                    '2,500',
-                    style: TextStyle(
+                    getBalance(eList, etList),
+                    style:const TextStyle(
                       fontSize: 30,
                       color: Colors.green,
                     ),
                   ),
-                  Text(
+                 const Text(
                     'Balance',
                     style: TextStyle(
                       fontSize: 15,

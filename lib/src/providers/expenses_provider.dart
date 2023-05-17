@@ -143,6 +143,7 @@ class ExpensesProvider extends ChangeNotifier {
             color: y.color,
             icon: y.icon,
             id: x.id,
+            link: x.link,
             amount: x.expense,
             comment: x.comment,
             day: x.day,

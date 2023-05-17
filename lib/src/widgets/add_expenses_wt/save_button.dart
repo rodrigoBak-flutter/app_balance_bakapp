@@ -7,7 +7,9 @@ import 'package:provider/provider.dart';
 
 class SaveButtonWidget extends StatelessWidget {
   final CombinedModel cModel;
-  const SaveButtonWidget({super.key, required this.cModel});
+  final bool hasData;
+  const SaveButtonWidget(
+      {super.key, required this.cModel, required this.hasData});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +20,11 @@ class SaveButtonWidget extends StatelessWidget {
       onTap: () {
         //Condiciones por si el usuario guarda todo vacio
         if (cModel.amount != 0.0 && cModel.link != null) {
-          exProvider.addNewExpenes(cModel);
+          (hasData)
+              ? exProvider.updateExpenses(cModel)
+              : exProvider.addNewExpenes(cModel);
           Fluttertoast.showToast(
-              msg: 'Gasto agregado 👌',
+              msg: (hasData) ? 'Gasto editado 👌' : 'Gasto agregado 👌',
               backgroundColor: Colors.green,
               textColor: Colors.white);
           uiProvider.bnbIndex = 0;
@@ -41,9 +45,9 @@ class SaveButtonWidget extends StatelessWidget {
         height: size.height * 0.1,
         width: size.width * 0.9,
         child: Constants.CustomButton(
-          Colors.green,
+          (hasData) ? const Color.fromARGB(255, 186, 186, 5) : Colors.green,
           Colors.white,
-          'GUARDAR',
+          (hasData) ? 'EDITAR' : 'GUARDAR',
         ),
       ),
     );

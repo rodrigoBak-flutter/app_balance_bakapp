@@ -19,12 +19,9 @@ class FlayerCategoriesWidget extends StatelessWidget {
       limintList = gList.sublist(0, 5);
       hasLimint = true;
     }
-    if(limintList.length == 5){
-      limintList.add(CombinedModel(
-        category: 'Otros..',
-        icon: 'otros',
-        color: '#20634b'
-      ));
+    if (limintList.length == 5) {
+      limintList.add(
+          CombinedModel(category: 'Otros..', icon: 'otros', color: '#20634b'));
     }
     return Row(
       children: [
@@ -39,23 +36,29 @@ class FlayerCategoriesWidget extends StatelessWidget {
                 if (hasLimint == true) {
                   item = limintList[i];
                 }
-                return ListTile(
-                  //dense y visualDensity, son propiedades para juntar/pegar nuestros elementos
-                  dense: true,
-                  visualDensity: const VisualDensity(vertical: -4),
-                  horizontalTitleGap: -5,
-                  leading: Icon(
-                    item.icon.toIcon(),
-                    color: item.color.toColor(),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, 'categories_details',
+                        arguments: item);
+                  },
+                  child: ListTile(
+                    //dense y visualDensity, son propiedades para juntar/pegar nuestros elementos
+                    dense: true,
+                    visualDensity: const VisualDensity(vertical: -4),
+                    horizontalTitleGap: -5,
+                    leading: Icon(
+                      item.icon.toIcon(),
+                      color: item.color.toColor(),
+                    ),
+                    title: Text(
+                      item.category,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.bold),
+                    ),
+                    // trailing: Text(getAmountFormat(item.amount)),
                   ),
-                  title: Text(
-                    item.category,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                        fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
-                  // trailing: Text(getAmountFormat(item.amount)),
                 );
               }),
         ),

@@ -11,6 +11,15 @@ class AddExpensesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CombinedModel cModel = CombinedModel();
+     bool hasData = false;
+
+    final editCModel =
+        ModalRoute.of(context)!.settings.arguments as CombinedModel?;
+
+    if (editCModel != null) {
+      cModel = editCModel;
+      hasData = true;
+    }
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       /*
@@ -22,7 +31,7 @@ class AddExpensesScreen extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title:const Text('Agregar Gasto'),
+            title: (hasData) ? const Text('Editar Gasto') : const Text('Agregar Gasto'),
           ),
           body: Column(
             children: [
@@ -46,8 +55,10 @@ class AddExpensesScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: Center(
-                          child: SaveButtonWidget(cModel: cModel,)
-                        ),
+                            child: SaveButtonWidget(
+                          cModel: cModel,
+                          hasData: hasData,
+                        )),
                       ),
                     ],
                   ),

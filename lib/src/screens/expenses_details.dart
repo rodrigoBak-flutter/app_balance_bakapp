@@ -1,8 +1,11 @@
-import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
+import 'package:app_balances_bakapp/src/models/combined_model.dart';
+import 'package:app_balances_bakapp/src/providers/providers.dart';
 import 'package:app_balances_bakapp/src/utils/constants.dart';
 import 'package:app_balances_bakapp/src/utils/math_operations.dart';
 import 'package:app_balances_bakapp/src/utils/utils_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class ExpensesDetailsScreen extends StatefulWidget {
@@ -13,6 +16,7 @@ class ExpensesDetailsScreen extends StatefulWidget {
 }
 
 class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
+  List<CombinedModel> cList = [];
   //Controlador de la animacion
   final _scrollControler = ScrollController();
   double _offset = 0;
@@ -27,15 +31,17 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
   @override
   void initState() {
     _scrollControler.addListener(_listener);
-
+    cList = Provider.of<ExpensesProvider>(context, listen: false).allItemsList;
     // TODO: implement initState
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final exProvider = Provider.of<ExpensesProvider>(context);
-    final cList = exProvider.allItemsList;
+    final exProvider = Provider.of<ExpensesProvider>(context, listen: false);
+    final uiProvider = Provider.of<UIProvider>(context, listen: false);
+    cList = Provider.of<ExpensesProvider>(context).allItemsList;
+
     double totalExp = 0.0;
     //Funcion para sumar mis gastos
     totalExp = cList.map((e) => e.amount).fold(0.0, (a, b) => a + b);
@@ -75,47 +81,79 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
           SliverList(
             delegate: SliverChildBuilderDelegate((context, i) {
               var item = cList[i];
-              return ListTile(
-                leading: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Icon(
-                      Icons.calendar_today,
-                      color: item.color.toColor(),
-                      size: 40,
-                    ),
-                    Positioned(
-                      top: 16,
-                      child: Text(item.day.toString()),
-                    ),
-                  ],
-                ),
-                title: Row(
-                  children: [
-                    Text(item.category),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Icon(
-                      item.icon.toIcon(),
-                      color: item.color.toColor(),
-                    ),
-                  ],
-                ),
-                subtitle: Text(item.comment),
-                trailing: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      getAmountFormat(item.amount),
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      '${(100 * item.amount / totalExp).toStringAsFixed(2)}%',
-                      style: const TextStyle(fontSize: 11),
-                    ),
-                  ],
+              return Slidable(
+                key: ValueKey(item),
+                startActionPane:
+                    ActionPane(motion: const BehindMotion(), children: [
+                  SlidableAction(
+                    onPressed: (_) {
+                      setState(() {
+                        cList.removeAt(i);
+                      });
+                      exProvider.deleteExpenses(item.id!);
+                      uiProvider.bnbIndex = 0;
+                      Fluttertoast.showToast(
+                          msg: 'Gasto eliminado 😉',
+                          backgroundColor: Colors.red);
+                    },
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.white,
+                    icon: Icons.delete,
+                    label: 'Eliminar',
+                  ),
+                  SlidableAction(
+                    onPressed: (_) {
+                      Navigator.pushNamed(context, 'add_expenses',
+                          arguments: item);
+                    },
+                    backgroundColor: const Color.fromARGB(255, 186, 186, 5),
+                    foregroundColor: Colors.white,
+                    icon: Icons.edit,
+                    label: 'Editar',
+                  ),
+                ]),
+                child: ListTile(
+                  leading: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Icon(
+                        Icons.calendar_today,
+                        color: item.color.toColor(),
+                        size: 40,
+                      ),
+                      Positioned(
+                        top: 16,
+                        child: Text(item.day.toString()),
+                      ),
+                    ],
+                  ),
+                  title: Row(
+                    children: [
+                      Text(item.category),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Icon(
+                        item.icon.toIcon(),
+                        color: item.color.toColor(),
+                      ),
+                    ],
+                  ),
+                  subtitle: Text(item.comment),
+                  trailing: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        getAmountFormat(item.amount),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        '${(100 * item.amount / totalExp).toStringAsFixed(2)}%',
+                        style: const TextStyle(fontSize: 11),
+                      ),
+                    ],
+                  ),
                 ),
               );
             }, childCount: cList.length),

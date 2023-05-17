@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 //Privider
+import 'package:provider/provider.dart';
 import 'package:app_balances_bakapp/src/providers/providers.dart';
 
 //Screens
-import 'package:app_balances_bakapp/src/screens/home_screen.dart';
-import 'package:provider/provider.dart';
+import 'package:app_balances_bakapp/src/screens/screens.dart';
 
 /*
   Sacar de BalanceScreen la condicion de que en Diciembre ya no puedo cargar mas gatos e ingresos :)
@@ -60,6 +60,8 @@ class MyApp extends StatelessWidget {
       initialRoute: 'home',
       routes: {
         'home': (_) => const HomeScreen(),
+        'add_expenses': (_) => const AddExpensesScreen(),
+        'categories_details': (_) => const CategoriesDetailScreen(),
       },
     );
   }

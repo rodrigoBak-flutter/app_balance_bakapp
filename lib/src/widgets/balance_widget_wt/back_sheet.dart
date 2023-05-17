@@ -1,8 +1,11 @@
+import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
 import 'package:app_balances_bakapp/src/screens/entries_details.dart';
 import 'package:app_balances_bakapp/src/screens/expenses_details.dart';
 import 'package:app_balances_bakapp/src/utils/constants.dart';
+import 'package:app_balances_bakapp/src/utils/math_operations.dart';
 import 'package:app_balances_bakapp/src/utils/page_animation_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BackSheetWidget extends StatelessWidget {
   const BackSheetWidget({super.key});
@@ -10,6 +13,8 @@ class BackSheetWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final eList = Provider.of<ExpensesProvider>(context).eList;
+    final etList = Provider.of<ExpensesProvider>(context).etList;
     _headers(String name, String amount, Color color) {
       return Column(
         children: [
@@ -48,7 +53,12 @@ class BackSheetWidget extends StatelessWidget {
                       ejey: -0.5,
                     ));
               },
-              child: _headers('Ingresos', '3,500.00', Colors.green)),
+              child: _headers(
+                  'Ingresos',
+                  getAmountFormat(
+                    getSumEnt(etList),
+                  ),
+                  Colors.green)),
           const VerticalDivider(
             thickness: 2.0,
           ),
@@ -62,7 +72,12 @@ class BackSheetWidget extends StatelessWidget {
                       ejey: -0.5,
                     ));
               },
-              child: _headers('Gastos', '1,500.00', Colors.red)),
+              child: _headers(
+                  'Gastos',
+                  getAmountFormat(
+                    getSumExp(eList),
+                  ),
+                  Colors.red)),
         ],
       ),
     );
