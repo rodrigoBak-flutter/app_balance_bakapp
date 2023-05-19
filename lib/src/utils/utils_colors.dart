@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
-
+//Utils
 import 'package:app_balances_bakapp/src/utils/utils.dart';
+
+int daysInMonth(int month) {
+  var now = DateTime.now();
+  var lastDay = (month < 12)
+      ? DateTime(now.year, month + 1, 0)
+      : DateTime(now.year + 1, 1, 0);
+  return lastDay.day;
+}
 
 extension ColorExtension on String {
   toColor() {

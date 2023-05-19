@@ -47,6 +47,10 @@ dependencies:
   fluttertoast: ^8.2.1
   #Me permite deslizar en mis gasto e ingresos, y se abre un menu
   flutter_slidable: ^3.0.0
+  #Incorporar diferentes graficos a mi pagina de graficos de balance
+  percent_indicator: ^4.2.3
+  #Incorporar diferentes graficos a mi pagina de graficos
+  charts_flutter_new: ^0.12.0
 
 dev_dependencies:
   flutter_test:
