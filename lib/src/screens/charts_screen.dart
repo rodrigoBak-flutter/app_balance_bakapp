@@ -19,6 +19,7 @@ class ChartsScreen extends StatelessWidget {
           elevation: 0.0,
         ),
         body: CustomScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           slivers: [
             SliverAppBar(
               expandedHeight: size.height * 0.30,

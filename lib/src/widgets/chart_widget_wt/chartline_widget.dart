@@ -1,5 +1,9 @@
+import 'package:app_balances_bakapp/src/utils/math_operations.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'dart:math';
+import 'package:charts_flutter_new/src/text_element.dart' as element;
+import 'package:charts_flutter_new/src/text_style.dart' as style;
 
 //Chart
 import 'package:charts_flutter_new/flutter.dart' as charts;
@@ -13,6 +17,8 @@ import 'package:app_balances_bakapp/src/models/expenses_model.dart';
 import 'package:app_balances_bakapp/src/utils/utils_colors.dart';
 
 class ChartLineWidget extends StatelessWidget {
+  static String? pointAmount;
+  static String? pointDay;
   const ChartLineWidget({super.key});
 
   @override
@@ -52,6 +58,8 @@ class ChartLineWidget extends StatelessWidget {
         //El measureFn, es en el grafico el eje de las "Y"
         measureFn: (v, i) => v.expense,
         data: eModel,
+        seriesColor: charts.ColorUtil.fromDartColor(
+            const Color.fromARGB(255, 77, 177, 80)),
       )
     ];
 
@@ -98,7 +106,7 @@ class ChartLineWidget extends StatelessWidget {
 
     return SizedBox(
       child: charts.LineChart(
-        series2,
+        series,
         animate: true,
         defaultRenderer: charts.LineRendererConfig(
           includePoints: true,
@@ -125,7 +133,7 @@ class ChartLineWidget extends StatelessWidget {
               //Esto determina la cantidad de lineas que apareceran en mi eje carte
               const charts.BasicNumericTickProviderSpec(desiredTickCount: 8),
         ),
-        //domainAxis ,configuracion del EJE "Y"
+        //domainAxis ,configuracion del EJE "X"
         domainAxis: charts.NumericAxisSpec(
             tickProviderSpec: charts.StaticNumericTickProviderSpec([
           const charts.TickSpec(0, label: '0'),
@@ -136,7 +144,85 @@ class ChartLineWidget extends StatelessWidget {
           const charts.TickSpec(25, label: '25'),
           charts.TickSpec(currentDay, label: currentDay.toString()),
         ])),
+        selectionModels: [
+          charts.SelectionModelConfig(
+              changedListener: (charts.SelectionModel model) {
+            if (model.hasDatumSelection) {
+              pointAmount = getAmountFormat(model.selectedSeries[0]
+                  .measureFn(model.selectedDatum[0].index)!
+                  .toDouble());
+              pointDay = model.selectedSeries[0]
+                  .domainFn(model.selectedDatum[0].index)
+                  .toString();
+            }
+          })
+        ],
+        //behaviors: Comportamiento del grafico
+        behaviors: [
+          charts.LinePointHighlighter(
+            showHorizontalFollowLine:
+                charts.LinePointHighlighterFollowLineType.nearest,
+            showVerticalFollowLine:
+                charts.LinePointHighlighterFollowLineType.nearest,
+            symbolRenderer: SymbolRender(),
+          ),
+          charts.SelectNearest(
+            eventTrigger: charts.SelectionTrigger.tapAndDrag,
+          ),
+        ],
       ),
+    );
+  }
+}
+
+//Es la clase que contiene el detalle de nuestros graficos
+class SymbolRender extends charts.CircleSymbolRenderer {
+  //Declaro una variable para definir el estilo del texto y ahorrar codigo
+  var txtStyle = style.TextStyle();
+  @override
+  void paint(
+    charts.ChartCanvas canvas,
+    Rectangle<num> bounds, {
+    List<int>? dashPattern,
+    charts.Color? fillColor,
+    charts.FillPatternType? fillPattern,
+    charts.Color? strokeColor,
+    double? strokeWidthPx,
+  }) {
+    super.paint(
+      canvas,
+      bounds,
+      dashPattern: dashPattern,
+      fillColor: fillColor,
+      fillPattern: fillPattern,
+      strokeColor: strokeColor,
+      strokeWidthPx: strokeWidthPx,
+    );
+
+    canvas.drawRect(
+        //Los bounds determinan la posicion que va a tener nuestro rectangulo de detalles
+        Rectangle(
+          bounds.left - 25,
+          bounds.top - 40,
+          bounds.width + 88,
+          bounds.height + 26,
+        ),
+        fill: charts.ColorUtil.fromDartColor(Colors.grey[900]!),
+        stroke: charts.ColorUtil.fromDartColor(Colors.white),
+        strokeWidthPx: 1);
+
+        
+    //Es mi variable declarada para darle un estilo propio al texto
+    txtStyle.color = charts.MaterialPalette.white;
+    txtStyle.fontSize = 12;
+
+    //Propiedad que permite introducir texto en nuestro rectangulo de detalle
+    canvas.drawText(
+      element.TextElement(
+          'Dia ${ChartLineWidget.pointDay} \n${ChartLineWidget.pointAmount}',
+          style: txtStyle),
+      (bounds.left -1).round(),
+      (bounds.top - 32).round(),
     );
   }
 }
