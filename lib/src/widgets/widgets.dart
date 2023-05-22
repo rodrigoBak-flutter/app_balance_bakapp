@@ -34,3 +34,4 @@ export 'package:app_balances_bakapp/src/widgets/chart_widget_wt/chartselector_wi
 export 'package:app_balances_bakapp/src/widgets/chart_widget_wt/chartswich_widget.dart';
 export 'package:app_balances_bakapp/src/widgets/chart_widget_wt/per_day_list_widget.dart';
 export 'package:app_balances_bakapp/src/widgets/chart_widget_wt/per_category_widget.dart';
+export 'package:app_balances_bakapp/src/widgets/chart_widget_wt/chart_pie_flayer_widget.dart';

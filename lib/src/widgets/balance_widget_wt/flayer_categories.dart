@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 
 //Providers
 import 'package:provider/provider.dart';
 import 'package:app_balances_bakapp/src/providers/providers.dart';
 //Models
 import 'package:app_balances_bakapp/src/models/combined_model.dart';
+//Widgets
+import 'package:app_balances_bakapp/src/widgets/widgets.dart';
 //Utils
 import 'package:app_balances_bakapp/src/utils/utils_colors.dart';
 
@@ -14,7 +15,9 @@ class FlayerCategoriesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final exProvider = Provider.of<ExpensesProvider>(context);
+    final uiProvider = Provider.of<UIProvider>(context, listen: true);
     final gList = exProvider.groupItemsList;
     List<CombinedModel> limintList = [];
     bool hasLimint = false;
@@ -41,8 +44,13 @@ class FlayerCategoriesWidget extends StatelessWidget {
                 }
                 return GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, 'categories_details',
-                        arguments: item);
+                    if (item.category == 'Otros..') {
+                      uiProvider.bnbIndex = 1;
+                      uiProvider.selectedChart = 'Grafico Circular';
+                    } else {
+                      Navigator.pushNamed(context, 'categories_details',
+                          arguments: item);
+                    }
                   },
                   child: ListTile(
                     //dense y visualDensity, son propiedades para juntar/pegar nuestros elementos
@@ -67,8 +75,27 @@ class FlayerCategoriesWidget extends StatelessWidget {
         ),
         Expanded(
           flex: 3,
-          child: CircleColor(color: Colors.greenAccent, circleSize: 150),
+          child: SizedBox(
+            height: size.height * 0.35,
+            child: const ChartPieFLayerWidget(),
+          ),
         ),
+        /*
+          GestureDetector(
+          onTap: () {
+            uiProvider.bnbIndex = 1;
+            uiProvider.selectedChart = 'Gráfico Pie';
+          },
+          child: const Align(
+            alignment: Alignment.bottomRight,
+            widthFactor: 4.5,
+            child: Text(
+              'DETALLES',
+              style: TextStyle(fontSize: 12.0, letterSpacing: 1.5),
+            ),
+          ),
+        ),
+         */
       ],
     );
   }
