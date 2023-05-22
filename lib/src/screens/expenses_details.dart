@@ -30,6 +30,8 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
     setState(() {
       _offset = _scrollControler.offset / 100;
       //  print(_offset);
+      //Condicion para que mis gastos al hacer scroll no se vaya hacia la derecha
+      if (_offset > 0.80) _offset = 0.8;
     });
   }
 
@@ -37,22 +39,31 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
   void initState() {
     _scrollControler.addListener(_listener);
     cList = Provider.of<ExpensesProvider>(context, listen: false).allItemsList;
-    // TODO: implement initState
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    //Recibo los argumentos de mis graficos
+    final dataDay = ModalRoute.of(context)!.settings.arguments as int?;
     final exProvider = Provider.of<ExpensesProvider>(context, listen: false);
     final uiProvider = Provider.of<UIProvider>(context, listen: false);
     cList = Provider.of<ExpensesProvider>(context).allItemsList;
 
     double totalExp = 0.0;
+
+    //Condicion para recibir los argumentos del dia seleccionado en mi pagina de graficos
+    if (dataDay != null) {
+      cList = cList.where((e) => e.day == dataDay).toList();
+    }
     //Funcion para sumar mis gastos
     totalExp = cList.map((e) => e.amount).fold(0.0, (a, b) => a + b);
 
-    //Condicion para que mis gastos al hacer scroll no se vaya hacia la derecha
-    if (_offset > 0.80) _offset = 0.8;
+    cList.sort(
+      (a, b) => b.day.compareTo(a.day),
+    );
+
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColorDark,
       body: CustomScrollView(

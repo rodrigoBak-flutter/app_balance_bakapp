@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+//Provider
+import 'package:provider/provider.dart';
+import 'package:app_balances_bakapp/src/providers/providers.dart';
 //Widgets
 import 'package:app_balances_bakapp/src/widgets/widgets.dart';
 //Utils
@@ -10,11 +13,19 @@ class ChartsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentChart = Provider.of<UIProvider>(context).selectedChart;
+    bool _isPerDay = false;
+
+    //Condicion que me permite elegir el listado en funcion del grafico que selecciono
+    if (currentChart == 'Grafico Lineal' ||
+        currentChart == 'Grafico Dispersion') {
+      _isPerDay = true;
+    }
     final size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: Theme.of(context).primaryColorDark,
         appBar: AppBar(
-          title: const Text('Grafico'),
+          title: Text(currentChart),
           centerTitle: true,
           elevation: 0.0,
         ),
@@ -22,16 +33,16 @@ class ChartsScreen extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           slivers: [
             SliverAppBar(
-              expandedHeight: size.height * 0.30,
+              expandedHeight: size.height * 0.40,
               flexibleSpace: FlexibleSpaceBar(
                 background: Align(
                   alignment: Alignment.bottomCenter,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: const [
-                      Text('Selector'),
+                      ChartSelectorWidget(),
                       Expanded(
-                        child: ChartLineWidget(),
+                        child: ChartSwichWidget(),
                       ),
                     ],
                   ),
@@ -48,6 +59,7 @@ class ChartsScreen extends StatelessWidget {
                 ),
               ),
             ),
+            (_isPerDay) ? const PerDayListWidget() : const PerCategoryWidget()
           ],
         ));
   }

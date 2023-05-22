@@ -17,15 +17,24 @@ class CustomNavigationBar extends StatelessWidget {
       items: const [
         BottomNavigationBarItem(
           label: 'Balance',
-          icon: Icon(Icons.account_balance_outlined),
+          icon: Icon(
+            Icons.account_balance_outlined,
+            color: Colors.grey,
+          ),
         ),
         BottomNavigationBarItem(
           label: 'Graficos',
-          icon: Icon(Icons.bar_chart_outlined),
+          icon: Icon(
+            Icons.bar_chart_outlined,
+            color: Colors.grey,
+          ),
         ),
         BottomNavigationBarItem(
           label: 'Configuraciones',
-          icon: Icon(Icons.settings_outlined),
+          icon: Icon(
+            Icons.settings_outlined,
+            color: Colors.grey,
+          ),
         ),
       ],
     );

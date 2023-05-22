@@ -13,3 +13,4 @@ export 'package:app_balances_bakapp/src/screens/categories_details.dart';
 export 'package:app_balances_bakapp/src/screens/charts_screen.dart';
 export 'package:app_balances_bakapp/src/screens/balance_screen.dart';
 export 'package:app_balances_bakapp/src/screens/setting_screen.dart';
+

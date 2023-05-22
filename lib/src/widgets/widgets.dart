@@ -4,7 +4,6 @@
 
 */
 //ADD ENTRIES WIDGET
-
 export 'package:app_balances_bakapp/src/widgets/add_entries_wt/save_button_widget.dart';
 //ADD EXPENSES WIDGET
 export 'package:app_balances_bakapp/src/widgets/add_expenses_wt/admin_category.dart';
@@ -29,3 +28,9 @@ export 'package:app_balances_bakapp/src/widgets/home_screen_wt/custom_navigation
 export 'package:app_balances_bakapp/src/widgets/global_wt/percent_indicator.dart';
 //CHART WIDGET
 export 'package:app_balances_bakapp/src/widgets/chart_widget_wt/chartline_widget.dart';
+export 'package:app_balances_bakapp/src/widgets/chart_widget_wt/chartpie_widget.dart';
+export 'package:app_balances_bakapp/src/widgets/chart_widget_wt/chartscatterplot_widget.dart';
+export 'package:app_balances_bakapp/src/widgets/chart_widget_wt/chartselector_widget.dart';
+export 'package:app_balances_bakapp/src/widgets/chart_widget_wt/chartswich_widget.dart';
+export 'package:app_balances_bakapp/src/widgets/chart_widget_wt/per_day_list_widget.dart';
+export 'package:app_balances_bakapp/src/widgets/chart_widget_wt/per_category_widget.dart';

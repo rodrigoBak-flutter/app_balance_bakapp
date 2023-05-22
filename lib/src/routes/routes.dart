@@ -16,4 +16,5 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   'home': (_) => const HomeScreen(),
   'add_expenses': (_) => const AddExpensesScreen(),
   'categories_details': (_) => const CategoriesDetailScreen(),
+  'expenses_details': (_) => const ExpensesDetailsScreen(),
 };
