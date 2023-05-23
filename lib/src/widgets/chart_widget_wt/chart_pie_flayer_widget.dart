@@ -33,14 +33,13 @@ class _ChartPieWidgetState extends State<ChartPieFLayerWidget> {
 
     if (gList.length >= 6) {
       totalOthers =
-          gList.sublist(0).map((e) => e.amount).fold(0.0, (a, b) => a + b);
+          gList.sublist(5).map((e) => e.amount).fold(0.0, (a, b) => a + b);
       gList = gList.sublist(0, 5).toList();
       gList.add(CombinedModel(
-        category: 'Otros..',
-        amount: totalOthers,
-        icon: 'otros',
-        color: '#20634b'
-      ));
+          category: 'Otros..',
+          amount: totalOthers,
+          icon: 'otros',
+          color: '#20634b'));
     }
 
     var item = gList[_index];

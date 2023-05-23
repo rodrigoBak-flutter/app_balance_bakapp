@@ -3,7 +3,6 @@ import 'package:path/path.dart';
 
 import 'package:app_balances_bakapp/src/models/models.dart';
 
-
 /*
   Aca se encuentras las Base de Datos para llamar a los Gastos y a los ingresos, y sus respectivo CRUD
 
@@ -61,6 +60,7 @@ class DBExpenses {
     final response = await db.insert('Expenses', exp.toJson());
     return response;
   }
+
   //Funcion que lee Gastos
   Future<List<ExpensesModel>> getExpenseByDate(int month, int year) async {
     final db = await dataBase;
@@ -71,22 +71,21 @@ class DBExpenses {
         : [];
     return eList;
   }
+
   //Funcion que actualizar Gastos
   Future<int> updateExpenses(ExpensesModel exp) async {
     final db = await dataBase;
-    final response = await db
-        .update('Expenses', exp.toJson(), where: 'id = ?', whereArgs: []);
+    final response = db
+        .update('Expenses', exp.toJson(), where: 'id = ?', whereArgs: [exp.id]);
     return response;
   }
+
   //Funcion que eliminar Gastos
   Future<int> deleteExpenses(int id) async {
     final db = await dataBase;
     final response = db.delete('Expenses', where: 'id = ?', whereArgs: [id]);
     return response;
   }
-
-
-
 
   /*
   
@@ -119,6 +118,7 @@ class DBExpenses {
         .update('Entries', exp.toJson(), where: 'id = ?', whereArgs: []);
     return response;
   }
+
   //Funcion que eliminar Ingresos
   Future<int> deleteEntries(int id) async {
     final db = await dataBase;

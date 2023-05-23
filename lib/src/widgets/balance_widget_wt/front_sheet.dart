@@ -32,9 +32,10 @@ class FrontSheetWidget extends StatelessWidget {
                       myWidget: FlayerCategoriesWidget()),
                   FlayerSkinWidget(
                       myTitle: 'Frecuencia de Gastos',
-                      myWidget: SizedBox(height: 150)),
+                      myWidget: FlayerFrecuencyWidget()),
                   FlayerSkinWidget(
-                      myTitle: 'Movimientos', myWidget: SizedBox(height: 150)),
+                      myTitle: 'Movimientos',
+                      myWidget: FlayerMovementsWidget()),
                   FlayerSkinWidget(
                       myTitle: 'Balance General',
                       myWidget: SizedBox(height: 150)),

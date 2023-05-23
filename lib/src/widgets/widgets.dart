@@ -22,6 +22,8 @@ export 'package:app_balances_bakapp/src/widgets/balance_widget_wt/flowBoton_widg
 export 'package:app_balances_bakapp/src/widgets/balance_widget_wt/flow_widget.dart';
 export 'package:app_balances_bakapp/src/widgets/balance_widget_wt/front_sheet.dart';
 export 'package:app_balances_bakapp/src/widgets/balance_widget_wt/back_sheet.dart';
+export 'package:app_balances_bakapp/src/widgets/balance_widget_wt/flayer_frecuency_widget.dart';
+export 'package:app_balances_bakapp/src/widgets/balance_widget_wt/flayer_movements_widget.dart';
 //HOME WIDGET
 export 'package:app_balances_bakapp/src/widgets/home_screen_wt/custom_navigation_bar.dart';
 //GLOBAL WIDGET

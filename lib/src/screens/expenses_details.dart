@@ -49,7 +49,7 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
     final dataDay = ModalRoute.of(context)!.settings.arguments as int?;
     final exProvider = Provider.of<ExpensesProvider>(context, listen: false);
     final uiProvider = Provider.of<UIProvider>(context, listen: false);
-    cList = Provider.of<ExpensesProvider>(context).allItemsList;
+    cList = Provider.of<ExpensesProvider>(context, listen: true).allItemsList;
 
     double totalExp = 0.0;
 

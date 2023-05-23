@@ -45,10 +45,15 @@ class PercentCircularWiget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Con esta condicion cuando mis gastos superen a mis ingresos, la apliacion no va a reventar
+    var _percent = percent;
+    if (percent > 1) {
+      _percent = 1;
+    }
     return CircularPercentIndicator(
       animation: true,
       animationDuration: 1000,
-      percent: percent,
+      percent: _percent,
       radius: radius,
       progressColor: color,
       arcType: arcType,
@@ -56,7 +61,7 @@ class PercentCircularWiget extends StatelessWidget {
       lineWidth: 12,
       circularStrokeCap: CircularStrokeCap.round,
       center: Text(
-        '${(percent * 100).toStringAsFixed(0)}%',
+        '${(_percent * 100).toStringAsFixed(0)}%',
         style: const TextStyle(fontSize: 25),
       ),
       // linearGradient: ,

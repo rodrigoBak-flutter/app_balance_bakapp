@@ -101,9 +101,9 @@ class ExpensesProvider extends ChangeNotifier {
     var expenses = ExpensesModel(
         id: cModel.id,
         link: cModel.link,
-        year: cModel.year,
-        month: cModel.month,
         day: cModel.day,
+        month: cModel.month,
+        year: cModel.year,
         comment: cModel.comment,
         expense: cModel.amount);
     await DBExpenses.db.updateExpenses(expenses);
@@ -146,9 +146,9 @@ class ExpensesProvider extends ChangeNotifier {
               link: x.link,
               amount: x.expense,
               comment: x.comment,
-              year: x.year,
+              day: x.day,
               month: x.month,
-              day: x.day));
+              year: x.year));
         }
       }
     }

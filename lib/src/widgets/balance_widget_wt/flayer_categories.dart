@@ -29,73 +29,75 @@ class FlayerCategoriesWidget extends StatelessWidget {
       limintList.add(
           CombinedModel(category: 'Otros..', icon: 'otros', color: '#20634b'));
     }
-    return Row(
+    return Column(
       children: [
-        Expanded(
-          flex: 2,
-          child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: (hasLimint) ? limintList.length : gList.length,
-              itemBuilder: (_, i) {
-                var item = gList[i];
-                if (hasLimint == true) {
-                  item = limintList[i];
-                }
-                return GestureDetector(
-                  onTap: () {
-                    if (item.category == 'Otros..') {
-                      uiProvider.bnbIndex = 1;
-                      uiProvider.selectedChart = 'Grafico Circular';
-                    } else {
-                      Navigator.pushNamed(context, 'categories_details',
-                          arguments: item);
+        Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: (hasLimint) ? limintList.length : gList.length,
+                  itemBuilder: (_, i) {
+                    var item = gList[i];
+                    if (hasLimint == true) {
+                      item = limintList[i];
                     }
-                  },
-                  child: ListTile(
-                    //dense y visualDensity, son propiedades para juntar/pegar nuestros elementos
-                    dense: true,
-                    visualDensity: const VisualDensity(vertical: -4),
-                    horizontalTitleGap: -5,
-                    leading: Icon(
-                      item.icon.toIcon(),
-                      color: item.color.toColor(),
-                    ),
-                    title: Text(
-                      item.category,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.bold),
-                    ),
-                    // trailing: Text(getAmountFormat(item.amount)),
-                  ),
-                );
-              }),
+                    return GestureDetector(
+                      onTap: () {
+                        if (item.category == 'Otros..') {
+                          uiProvider.bnbIndex = 1;
+                          uiProvider.selectedChart = 'Grafico Circular';
+                        } else {
+                          Navigator.pushNamed(context, 'categories_details',
+                              arguments: item);
+                        }
+                      },
+                      child: ListTile(
+                        //dense y visualDensity, son propiedades para juntar/pegar nuestros elementos
+                        dense: true,
+                        visualDensity: const VisualDensity(vertical: -4),
+                        horizontalTitleGap: -5,
+                        leading: Icon(
+                          item.icon.toIcon(),
+                          color: item.color.toColor(),
+                        ),
+                        title: Text(
+                          item.category,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontSize: 12, fontWeight: FontWeight.bold),
+                        ),
+                        // trailing: Text(getAmountFormat(item.amount)),
+                      ),
+                    );
+                  }),
+            ),
+            Expanded(
+              flex: 3,
+              child: SizedBox(
+                height: size.height * 0.35,
+                child: const ChartPieFLayerWidget(),
+              ),
+            ),
+          ],
         ),
-        Expanded(
-          flex: 3,
-          child: SizedBox(
-            height: size.height * 0.35,
-            child: const ChartPieFLayerWidget(),
-          ),
-        ),
-        /*
-          GestureDetector(
+        GestureDetector(
           onTap: () {
             uiProvider.bnbIndex = 1;
-            uiProvider.selectedChart = 'Gráfico Pie';
+            uiProvider.selectedChart = 'Grafico Circular';
           },
           child: const Align(
             alignment: Alignment.bottomRight,
-            widthFactor: 4.5,
+            widthFactor: 5.5,
             child: Text(
               'DETALLES',
               style: TextStyle(fontSize: 12.0, letterSpacing: 1.5),
             ),
           ),
         ),
-         */
       ],
     );
   }
