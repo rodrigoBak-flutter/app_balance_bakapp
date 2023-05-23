@@ -1,16 +1,12 @@
-# app_balances_bakapp
+ExpensesModel                                 FeaturesModel                                                     CombinedModel
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+int id;                                         int id;                                                           int id; 
+int link;                                       String category;                                                  int link;
+int year;          =========>>>                 String color;                       =======                       int year;
+int month;         <<<<========                 String icon;                        =======                       int month;
+int day;                                                                                                          int day;
+String comment;                                                                                                   String category;
+double expense;                                                                                                   String color;
+                                                                                                                  String icon;
+                                                                                                                  String comment;
+Base de datos                                   Base de datos                                                     double expenses;
