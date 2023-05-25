@@ -72,11 +72,17 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
           SliverAppBar(
             expandedHeight: 150,
             title: const Text('Desglose de gastos'),
+            centerTitle: true,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Align(
-                  alignment: Alignment(_offset, 1),
-                  child: Text(getAmountFormat(totalExp))),
+                alignment: Alignment(_offset, 1),
+                child: Text(
+                  getAmountFormat(totalExp),
+                  style: TextStyle(
+                      color: Theme.of(context).appBarTheme.foregroundColor),
+                ),
+              ),
               centerTitle: true,
               background: const Align(
                 alignment: Alignment.bottomCenter,

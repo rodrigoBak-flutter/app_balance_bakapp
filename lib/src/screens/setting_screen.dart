@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 
+//Widgets
+import 'package:app_balances_bakapp/src/widgets/widgets.dart';
+
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Setting'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Configuracion'),
+        centerTitle: true,
+        elevation: 0,
+      ),
+      body: ListView(
+        children:const [
+           DarkModeSwichWidget(),
+        ],
       ),
     );
   }

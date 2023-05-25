@@ -13,6 +13,7 @@ class FrontSheetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final eList = Provider.of<ExpensesProvider>(context).eList;
     bool hasData = false;
 
@@ -26,19 +27,22 @@ class FrontSheetWidget extends StatelessWidget {
             ? ListView(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                children: const [
-                  FlayerSkinWidget(
+                children: [
+                  const FlayerSkinWidget(
                       myTitle: 'Categoria de Gastos',
                       myWidget: FlayerCategoriesWidget()),
-                  FlayerSkinWidget(
+                  const FlayerSkinWidget(
                       myTitle: 'Frecuencia de Gastos',
                       myWidget: FlayerFrecuencyWidget()),
-                  FlayerSkinWidget(
+                  const FlayerSkinWidget(
                       myTitle: 'Movimientos',
                       myWidget: FlayerMovementsWidget()),
-                  FlayerSkinWidget(
+                  const FlayerSkinWidget(
                       myTitle: 'Balance General',
-                      myWidget: SizedBox(height: 150)),
+                      myWidget: FlayerBalanceWidget()),
+                  SizedBox(
+                    height: size.height * 0.10,
+                  )
                 ],
               )
             : Column(

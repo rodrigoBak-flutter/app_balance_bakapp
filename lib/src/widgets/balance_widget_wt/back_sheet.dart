@@ -24,14 +24,19 @@ class BackSheetWidget extends StatelessWidget {
             child: Text(
               name,
               style: const TextStyle(
-                fontSize: 18,
-                letterSpacing: 1.5,
-              ),
+                  fontSize: 18,
+                  letterSpacing: 1.5,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Text(
             amount,
-            style: TextStyle(fontSize: 20, letterSpacing: 1.5, color: color),
+            style: TextStyle(
+              fontSize: 20,
+              letterSpacing: 1.5,
+              color: color,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       );
@@ -45,21 +50,22 @@ class BackSheetWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    PageAnimationRoutes(
-                      widget: const EntriesDetailsScreen(),
-                      ejex: -0.5,
-                      ejey: -0.5,
-                    ));
-              },
-              child: _headers(
-                  'Ingresos',
-                  getAmountFormat(
-                    getSumEnt(etList),
-                  ),
-                  Colors.green)),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  PageAnimationRoutes(
+                    widget: const EntriesDetailsScreen(),
+                    ejex: -0.5,
+                    ejey: -0.5,
+                  ));
+            },
+            child: _headers(
+                'Ingresos',
+                getAmountFormat(
+                  getSumEnt(etList),
+                ),
+                Colors.green),
+          ),
           const VerticalDivider(
             thickness: 2.0,
           ),

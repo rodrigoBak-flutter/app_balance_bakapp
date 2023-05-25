@@ -57,7 +57,7 @@ class FlayerCategoriesWidget extends StatelessWidget {
                       child: ListTile(
                         //dense y visualDensity, son propiedades para juntar/pegar nuestros elementos
                         dense: true,
-                        visualDensity: const VisualDensity(vertical: -4),
+                        visualDensity: const VisualDensity(vertical: -2),
                         horizontalTitleGap: -5,
                         leading: Icon(
                           item.icon.toIcon(),

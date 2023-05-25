@@ -1,11 +1,13 @@
-import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
-import 'package:app_balances_bakapp/src/utils/math_operations.dart';
-import 'package:app_balances_bakapp/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:provider/provider.dart';
 
 //Providers
+import 'package:provider/provider.dart';
+import 'package:app_balances_bakapp/src/providers/expenses_provider.dart';
+//Widgets
+import 'package:app_balances_bakapp/src/widgets/widgets.dart';
+//Utils
+import 'package:app_balances_bakapp/src/utils/math_operations.dart';
 
 class FlayerMovementsWidget extends StatelessWidget {
   const FlayerMovementsWidget({super.key});
@@ -42,17 +44,29 @@ class FlayerMovementsWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Gastos realizados',style: TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold,letterSpacing: 1.3),),
+                const Text(
+                  'Gastos realizados',
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.3),
+                ),
                 Text(
                   getAmountFormat(
                     _totalExp,
                   ),
                   style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold,letterSpacing: 1.3),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.3),
                 ),
-                Text('Absorbe un ${(_totalExp / _totalEt * 100).toStringAsFixed(2)}% de tus ingresos',style: TextStyle(
-                      fontSize: 11, fontWeight: FontWeight.bold,letterSpacing: 1.3),),
+                Text(
+                  'Absorbe un ${(_totalExp / _totalEt * 100).toStringAsFixed(2)}% de tus ingresos',
+                  style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.3),
+                ),
               ],
             ),
           ),

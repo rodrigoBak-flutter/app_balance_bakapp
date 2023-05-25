@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//Preferencias del usuario
+import 'package:app_balances_bakapp/src/providers/shared_preference.dart';
 //Localizacion para el calendario
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -15,11 +17,15 @@ import 'package:app_balances_bakapp/src/routes/routes.dart';
 
  */
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final preference = UserPrefence();
+  await preference.initPreference();
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (_) => UIProvider()),
       ChangeNotifierProvider(create: (_) => ExpensesProvider()),
+      ChangeNotifierProvider(create: (_) => ThemeProvider(preference.darkMode)),
     ], child: const MyApp()),
   );
 }
@@ -30,35 +36,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Balance',
-      //Idioma que se va a desplegar el calendario
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        // ignore: prefer_const_constructors
-        Locale('es', 'ES'), // Español
-      ],
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-          appBarTheme: AppBarTheme(
-            backgroundColor: Colors.grey[900],
-          ),
-          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-              selectedItemColor: Colors.green),
-          floatingActionButtonTheme: FloatingActionButtonThemeData(
-            backgroundColor: Colors.green[800],
-            foregroundColor: Colors.white,
-          ),
-          colorScheme: const ColorScheme.dark(primary: Colors.green),
-          scaffoldBackgroundColor: Colors.grey[900],
-          primaryColorDark: Colors.grey[850],
-          dividerColor: Colors.grey),
-      initialRoute: 'home',
-      routes: appRoutes,
+    return Consumer<ThemeProvider>(
+      builder: (context, value, child) {
+        return MaterialApp(
+          title: 'Balance',
+          //Idioma que se va a desplegar el calendario
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            // ignore: prefer_const_constructors
+            Locale('es', 'ES'), // Español
+          ],
+          debugShowCheckedModeBanner: false,
+          theme: value.getTheme(),
+          initialRoute: 'home',
+          routes: appRoutes,
+        );
+      }
     );
   }
 }
