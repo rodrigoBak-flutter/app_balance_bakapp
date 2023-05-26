@@ -4,7 +4,6 @@
 
 */
 //ADD ENTRIES WIDGET
-
 export 'package:app_balances_bakapp/src/widgets/add_entries_wt/save_button_widget.dart';
 //ADD EXPENSES WIDGET
 export 'package:app_balances_bakapp/src/widgets/add_expenses_wt/admin_category.dart';
@@ -42,3 +41,4 @@ export 'package:app_balances_bakapp/src/widgets/chart_widget_wt/per_category_wid
 export 'package:app_balances_bakapp/src/widgets/chart_widget_wt/chart_pie_flayer_widget.dart';
 //SETTING WIDGET
 export 'package:app_balances_bakapp/src/widgets/setting_widget_wt/dark_mode_swich.dart';
+export 'package:app_balances_bakapp/src/widgets/setting_widget_wt/time_picker_widget.dart';

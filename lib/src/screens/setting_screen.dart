@@ -15,8 +15,15 @@ class SettingScreen extends StatelessWidget {
         elevation: 0,
       ),
       body: ListView(
-        children:const [
-           DarkModeSwichWidget(),
+        children: const [
+          DarkModeSwichWidget(),
+          Divider(
+            thickness: 2,
+          ),
+          TimePickerWitget(),
+          Divider(
+            thickness: 2,
+          ),
         ],
       ),
     );
