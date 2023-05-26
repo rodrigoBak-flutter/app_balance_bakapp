@@ -4,8 +4,9 @@ import 'package:intl/intl.dart';
 //Utils
 import 'package:app_balances_bakapp/src/utils/constants.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
-//Provider - SharedPrefences
+//Provider - SharedPrefences - LocalNotification
 import 'package:app_balances_bakapp/src/providers/shared_preference.dart';
+import 'package:app_balances_bakapp/src/providers/local_notification.dart';
 
 class TimePickerWitget extends StatefulWidget {
   const TimePickerWitget({super.key});
@@ -16,6 +17,7 @@ class TimePickerWitget extends StatefulWidget {
 
 class _TimePickerWitgetState extends State<TimePickerWitget> {
   final _preference = UserPrefence();
+  final _notification = LocalNotification();
   bool _isEnable = false;
   String _title = 'Activar Notificaciones';
   @override
@@ -42,9 +44,15 @@ class _TimePickerWitgetState extends State<TimePickerWitget> {
       _isEnable = false;
     }
 
+    /*
+    
+    -------- Funcion para por desactivar las notificaciones ------------
+
+    */
     _cancelNotification(bool value) {
       if (value == true) {
-        _preference.hour = 21;
+        //Le doy por defecto que cuando la active por primera vez le llegue la Notificacion a las 08:30 AM
+        _preference.hour = 08;
         _preference.minute = 30;
       } else {
         _preference.deleteTime();
@@ -58,13 +66,20 @@ class _TimePickerWitgetState extends State<TimePickerWitget> {
           value: _isEnable,
           onChanged: (value) => setState(() {
             _isEnable = value;
+            _cancelNotification(value);
           }),
         ),
         ListTile(
-          leading: const Icon(
-            Icons.notifications_active_outlined,
-            size: 35,
-          ),
+          enabled: _isEnable,
+          leading: (_isEnable)
+              ? const Icon(
+                  Icons.notifications_active_outlined,
+                  size: 35,
+                )
+              : const Icon(
+                  Icons.notifications_off_outlined,
+                  size: 35,
+                ),
           title: const Text('Recordatorio diario'),
           subtitle: Text(currentTime),
           trailing: const Icon(Icons.arrow_forward_ios_outlined),
@@ -137,6 +152,7 @@ class _TimePickerWitgetState extends State<TimePickerWitget> {
                         ),
                         onTap: () {
                           setState(() {
+                            _notification.dailyNotification(_hour!, _minute!);
                             _preference.hour = _hour!;
                             _preference.minute = _minute!;
                             Navigator.pop(context);

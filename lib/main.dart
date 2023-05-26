@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
 
 //Preferencias del usuario
 import 'package:app_balances_bakapp/src/providers/shared_preference.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 //Privider
 import 'package:provider/provider.dart';
 import 'package:app_balances_bakapp/src/providers/providers.dart';
+import 'package:app_balances_bakapp/src/providers/local_notification.dart';
 
 //Rutas
 import 'package:app_balances_bakapp/src/routes/routes.dart';
@@ -19,8 +21,13 @@ import 'package:app_balances_bakapp/src/routes/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  tz.initializeTimeZones();
   final preference = UserPrefence();
+  final notification = LocalNotification();
+
   await preference.initPreference();
+  await notification.initialize();
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (_) => UIProvider()),
@@ -36,26 +43,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-      builder: (context, value, child) {
-        return MaterialApp(
-          title: 'Balance',
-          //Idioma que se va a desplegar el calendario
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            // ignore: prefer_const_constructors
-            Locale('es', 'ES'), // Español
-          ],
-          debugShowCheckedModeBanner: false,
-          theme: value.getTheme(),
-          initialRoute: 'home',
-          routes: appRoutes,
-        );
-      }
-    );
+    return Consumer<ThemeProvider>(builder: (context, value, child) {
+      return MaterialApp(
+        title: 'Balance',
+        //Idioma que se va a desplegar el calendario
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          // ignore: prefer_const_constructors
+          Locale('es', 'ES'), // Español
+        ],
+        debugShowCheckedModeBanner: false,
+        theme: value.getTheme(),
+        initialRoute: 'home',
+        routes: appRoutes,
+      );
+    });
   }
 }

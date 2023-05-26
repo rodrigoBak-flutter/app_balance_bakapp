@@ -55,6 +55,11 @@ dependencies:
   shared_preferences: ^2.1.1
   #Paquete para personalizar el timer del local notification
   flutter_time_picker_spinner: ^2.0.0
+  #Notificaciones locales
+  flutter_local_notifications: ^14.1.0
+  #Horario universal para mis notifiaciones locales 
+  timezone: ^0.9.2
+  flutter_native_timezone: ^2.0.0
 
 dev_dependencies:
   flutter_test:
