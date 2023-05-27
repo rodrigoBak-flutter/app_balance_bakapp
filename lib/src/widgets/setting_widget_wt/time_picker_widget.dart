@@ -54,8 +54,10 @@ class _TimePickerWitgetState extends State<TimePickerWitget> {
         //Le doy por defecto que cuando la active por primera vez le llegue la Notificacion a las 08:30 AM
         _preference.hour = 08;
         _preference.minute = 30;
+        _notification.dailyNotification(08, 30);
       } else {
         _preference.deleteTime();
+        _notification.cancelNotification();
       }
     }
 
