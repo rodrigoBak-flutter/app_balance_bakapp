@@ -38,8 +38,8 @@ class ThemeProvider extends ChangeNotifier {
       backgroundColor: Colors.green[800],
       foregroundColor: Colors.white,
     ),
-    scaffoldBackgroundColor: Colors.lightBlue[200],
-    primaryColorDark: Colors.lightBlue[500],
+    scaffoldBackgroundColor: Colors.white,
+    primaryColorDark: Colors.grey[300],
     dividerColor: Colors.black,
   );
 

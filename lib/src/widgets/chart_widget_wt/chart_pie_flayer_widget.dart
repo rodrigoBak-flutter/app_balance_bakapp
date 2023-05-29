@@ -76,7 +76,7 @@ class _ChartPieWidgetState extends State<ChartPieFLayerWidget> {
           animationDuration: const Duration(milliseconds: 600),
           defaultInteractions: true,
           defaultRenderer: charts.ArcRendererConfig(
-            arcWidth: 45,
+            arcWidth: 20,
             strokeWidthPx: 0.0,
             /*
               Con esta propiedad obtengo el nombre de mis categorias

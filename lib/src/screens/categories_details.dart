@@ -39,7 +39,7 @@ class _CategoriesDetailScreenState extends State<CategoriesDetailScreen> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            expandedHeight: size.height * 0.2,
+            expandedHeight: size.height * 0.25,
             title: Text(cModel!.category),
             actions: [
               Center(

@@ -25,12 +25,12 @@ class CommentBoxWidget extends StatelessWidget {
               initialValue: _text,
               cursorColor: Colors.green,
               keyboardType: TextInputType.text,
-              maxLength: 10,
+              maxLength: 25,
               decoration: InputDecoration(
                 counterText: '',
                 hintText: 'Agregar comentario (Opcional)',
                 labelText: 'Agregar comentario (Opcional)',
-                floatingLabelStyle: TextStyle(color: Colors.green),
+                floatingLabelStyle: const TextStyle(color: Colors.green),
                 hintStyle: const TextStyle(
                   fontSize: 12,
                 ),

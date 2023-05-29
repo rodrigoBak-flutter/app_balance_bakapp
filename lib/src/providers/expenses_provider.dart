@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:app_balances_bakapp/src/models/expenses_model.dart';
 import 'package:app_balances_bakapp/src/models/models.dart';
 import 'package:app_balances_bakapp/src/providers/providers.dart';
 import 'package:flutter/material.dart';
@@ -110,6 +111,18 @@ class ExpensesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  updateEntries(CombinedModel cModel) async {
+    var entries = EntriesModel(
+        id: cModel.id,
+        day: cModel.day,
+        month: cModel.month,
+        year: cModel.year,
+        comment: cModel.comment,
+        entries: cModel.amount);
+    await DBExpenses.db.updateEntries(entries);
+    notifyListeners();
+  }
+
   //Editar Categorias en BBDD
   updateFeatutes(FeaturesModel features) async {
     await DBFeatures.db.uddateFeatutes(features);
@@ -124,6 +137,10 @@ class ExpensesProvider extends ChangeNotifier {
 
   deleteExpenses(int id) async {
     await DBExpenses.db.deleteExpenses(id);
+  }
+
+  deleteEntries(int id) async {
+    await DBExpenses.db.deleteEntries(id);
   }
 
   /*

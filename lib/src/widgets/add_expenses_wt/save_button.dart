@@ -49,7 +49,7 @@ class SaveButtonWidget extends StatelessWidget {
         height: size.height * 0.1,
         width: size.width * 0.9,
         child: Constants.CustomButton(
-          (hasData) ? const Color.fromARGB(255, 186, 186, 5) : Colors.green,
+          (hasData) ? Colors.green : Colors.green,
           Colors.white,
           (hasData) ? 'EDITAR' : 'GUARDAR',
         ),

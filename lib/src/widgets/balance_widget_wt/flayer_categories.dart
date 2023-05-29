@@ -58,7 +58,7 @@ class FlayerCategoriesWidget extends StatelessWidget {
                         //dense y visualDensity, son propiedades para juntar/pegar nuestros elementos
                         dense: true,
                         visualDensity: const VisualDensity(vertical: -2),
-                        horizontalTitleGap: -5,
+                        horizontalTitleGap: -4,
                         leading: Icon(
                           item.icon.toIcon(),
                           color: item.color.toColor(),
@@ -94,7 +94,10 @@ class FlayerCategoriesWidget extends StatelessWidget {
             widthFactor: 5.5,
             child: Text(
               'DETALLES',
-              style: TextStyle(fontSize: 12.0, letterSpacing: 1.5),
+              style: TextStyle(
+                  fontSize: 12.0,
+                  letterSpacing: 1.5,
+                  fontWeight: FontWeight.bold),
             ),
           ),
         ),

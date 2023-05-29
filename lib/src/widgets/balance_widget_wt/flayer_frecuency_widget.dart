@@ -18,6 +18,9 @@ class FlayerFrecuencyWidget extends StatelessWidget {
           height: size.height * 0.4,
           child: const ChartLineWidget(),
         ),
+        SizedBox(
+          height: size.height * 0.035,
+        ),
         GestureDetector(
           onTap: () {
             uiProvider.bnbIndex = 1;
@@ -28,7 +31,7 @@ class FlayerFrecuencyWidget extends StatelessWidget {
             widthFactor: 5.5,
             child: Text(
               'DETALLES',
-              style: TextStyle(fontSize: 12.0, letterSpacing: 1.5),
+              style: TextStyle(fontSize: 12.0, letterSpacing: 1.5,fontWeight: FontWeight.bold),
             ),
           ),
         )

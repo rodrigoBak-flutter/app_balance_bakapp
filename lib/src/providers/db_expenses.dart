@@ -1,3 +1,4 @@
+import 'package:app_balances_bakapp/src/models/expenses_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -112,10 +113,10 @@ class DBExpenses {
   }
 
   //Funcion que actualizar Ingresos
-  Future<int> updateEntries(EntriesModel exp) async {
+  Future<int> updateEntries(EntriesModel ent) async {
     final db = await dataBase;
-    final response = await db
-        .update('Entries', exp.toJson(), where: 'id = ?', whereArgs: []);
+    final response = db
+        .update('Expenses', ent.toJson(), where: 'id = ?', whereArgs: [ent.id]);
     return response;
   }
 

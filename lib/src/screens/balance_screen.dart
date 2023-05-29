@@ -62,12 +62,22 @@ class _BalanceScreenState extends State<BalanceScreen> {
             .selectedMonth + // watch es que los lisen = true // read es que los lisen = false
         1; // Aqui mando llamar al provider month
 
+    double totalExp = 0;
+    double totalEt = 0;
+
+    totalExp = getSumExp(eList);
+    totalEt = getSumEnt(etList);
+
     ///// Aqui coloco la condicion ///////
+    /*
+    con esta condicion hago que cuando llegue a Diciembre no pueda cargar mas gastos
+
     if (month == 12) {
       disableFAB = true;
     } else {
       disableFAB = false;
     }
+     */
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: (disableFAB)
@@ -87,10 +97,18 @@ class _BalanceScreenState extends State<BalanceScreen> {
                   const MonthSelectorWidget(),
                   Text(
                     getBalance(eList, etList),
-                    style: const TextStyle(
-                      fontSize: 30,
-                      color: Colors.green,
-                    ),
+                    style: (totalExp > totalEt)
+                        ? const TextStyle(
+                            fontSize: 30,
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold)
+                        : const TextStyle(
+                            fontSize: 30,
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 20,
                   ),
                   const Text(
                     'Balance',

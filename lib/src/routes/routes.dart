@@ -15,6 +15,7 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   //Se puede enrutar de las dos maneras, poniendo el context o en su lugar un " _ "
   'home': (_) => const HomeScreen(),
   'add_expenses': (_) => const AddExpensesScreen(),
+  'add_entries': (_) => const AddEntriesScreen(),
   'categories_details': (_) => const CategoriesDetailScreen(),
   'expenses_details': (_) => const ExpensesDetailsScreen(),
 };

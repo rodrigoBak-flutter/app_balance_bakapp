@@ -128,7 +128,7 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
                       Navigator.pushNamed(context, 'add_expenses',
                           arguments: item);
                     },
-                    backgroundColor: const Color.fromARGB(255, 186, 186, 5),
+                    backgroundColor: Colors.green,
                     foregroundColor: Colors.white,
                     icon: Icons.edit,
                     label: 'Editar',

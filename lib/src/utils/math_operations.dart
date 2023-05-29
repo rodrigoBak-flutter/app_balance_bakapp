@@ -1,3 +1,4 @@
+import 'package:app_balances_bakapp/src/models/expenses_model.dart';
 import 'package:intl/intl.dart';
 //Utils
 export 'package:app_balances_bakapp/src/utils/math_operations.dart';
