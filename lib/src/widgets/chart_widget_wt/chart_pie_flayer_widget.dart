@@ -76,7 +76,7 @@ class _ChartPieWidgetState extends State<ChartPieFLayerWidget> {
           animationDuration: const Duration(milliseconds: 600),
           defaultInteractions: true,
           defaultRenderer: charts.ArcRendererConfig(
-            arcWidth: 20,
+            arcWidth: 25,
             strokeWidthPx: 0.0,
             /*
               Con esta propiedad obtengo el nombre de mis categorias
@@ -113,7 +113,7 @@ class _ChartPieWidgetState extends State<ChartPieFLayerWidget> {
               child: Icon(
                 item.icon.toIcon(),
                 color: item.color.toColor(),
-                size: 40,
+                size: 30,
               ),
             ),
             FittedBox(

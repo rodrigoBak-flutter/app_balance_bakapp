@@ -13,15 +13,18 @@ class ThemeProvider extends ChangeNotifier {
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.grey[900],
     ),
-    bottomNavigationBarTheme:
-        const BottomNavigationBarThemeData(selectedItemColor: Colors.green),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      selectedItemColor: Colors.green,
+    ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: Colors.green[800],
       foregroundColor: Colors.white,
     ),
-    colorScheme: const ColorScheme.dark(primary: Colors.green),
+    colorScheme: const ColorScheme.dark(
+      primary: Colors.green,
+    ),
     scaffoldBackgroundColor: Colors.grey[900],
-    primaryColorDark: Colors.grey[850],
+    primaryColorDark: const Color.fromARGB(255, 243, 146, 35),
     dividerColor: Colors.white,
   );
 
@@ -34,12 +37,12 @@ class ThemeProvider extends ChangeNotifier {
       selectedItemColor: Colors.green,
       backgroundColor: Colors.white,
     ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: Colors.green[800],
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: Colors.green,
       foregroundColor: Colors.white,
     ),
     scaffoldBackgroundColor: Colors.white,
-    primaryColorDark: Colors.grey[300],
+    primaryColorDark: const Color.fromARGB(255, 203, 244, 198),
     dividerColor: Colors.black,
   );
 

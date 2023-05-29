@@ -47,27 +47,18 @@ class FrontSheetWidget extends StatelessWidget {
               )
             : Column(
                 children: [
+                  //Imagagen que se muestra cuando no hay gastos
                   Container(
-                    margin: const EdgeInsets.only(top: 20),
+                    padding: const EdgeInsets.all(80),
+                    child: Image.asset('assets/fondo.png'),
+                  ),
+                  Container(
                     child: const Text(
                       'No tienes gastos este mes 😀',
                       maxLines: 1,
                       style: TextStyle(fontSize: 15, letterSpacing: 1.3),
                     ),
                   ),
-                   SizedBox(
-                    height: size.height * 0.20,
-                    width: size.width * 1,
-                  ),
-
-                  /*
-                  Imagagen que se muestra cuando no hay gastos
-
-                  Container(
-                    padding: const EdgeInsets.all(80),
-                    child: Image.asset('assets/empty.png'),
-                  ),
-                   */
                 ],
               ));
   }

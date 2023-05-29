@@ -14,26 +14,28 @@ class CustomNavigationBar extends StatelessWidget {
       currentIndex: uiProvider.bnbIndex,
       onTap: (int i) => uiProvider.bnbIndex = i,
       elevation: 0.0,
+      selectedItemColor: Theme.of(context).primaryColorDark,
+      selectedIconTheme: IconThemeData(
+        color: Theme.of(context).primaryColorDark,
+      ),
+      //unselectedItemColor: Theme.of(context).primaryColorDark,
       items: const [
         BottomNavigationBarItem(
           label: 'Balance',
           icon: Icon(
             Icons.account_balance_outlined,
-            color: Colors.grey,
           ),
         ),
         BottomNavigationBarItem(
           label: 'Graficos',
           icon: Icon(
             Icons.bar_chart_outlined,
-            color: Colors.grey,
           ),
         ),
         BottomNavigationBarItem(
           label: 'Configuraciones',
           icon: Icon(
             Icons.settings_outlined,
-            color: Colors.grey,
           ),
         ),
       ],

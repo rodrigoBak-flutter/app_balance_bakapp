@@ -64,6 +64,7 @@ class _TimePickerWitgetState extends State<TimePickerWitget> {
     return Column(
       children: [
         SwitchListTile(
+          activeColor: Theme.of(context).primaryColorDark,
           title: Text(_title),
           value: _isEnable,
           onChanged: (value) => setState(() {

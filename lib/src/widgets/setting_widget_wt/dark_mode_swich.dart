@@ -25,6 +25,7 @@ class _DarkModeSwichWidgetState extends State<DarkModeSwichWidget> {
     final swapTheme = Provider.of<ThemeProvider>(context);
     return SwitchListTile(
       value: _darkMode,
+      activeColor: Theme.of(context).primaryColorDark,
       title: const Text(
         'Modo Oscuro',
         style: TextStyle(fontSize: 14),

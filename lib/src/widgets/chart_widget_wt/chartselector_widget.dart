@@ -57,7 +57,7 @@ class BubleTab extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       decoration: BoxDecoration(
-          color: (selected) ? Colors.green : Colors.transparent,
+          color: (selected) ? Theme.of(context).primaryColorDark : Colors.transparent,
           borderRadius: BorderRadius.circular(25)),
       child: Icon(icon),
     );

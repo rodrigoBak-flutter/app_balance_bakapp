@@ -17,7 +17,7 @@ class FlayerSkinWidget extends StatelessWidget {
             width: size.width,
             child: Text(
               myTitle,
-              style: const TextStyle(fontSize: 18, letterSpacing: 1.5),
+              style: const TextStyle(fontSize: 18, letterSpacing: 1.5,fontWeight: FontWeight.bold),
             ),
           ),
           Container(
