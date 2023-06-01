@@ -105,71 +105,75 @@ class ChartLineWidget extends StatelessWidget {
     ];
 
     return SizedBox(
-      child: charts.LineChart(
-        series,
-        animate: true,
-        defaultRenderer: charts.LineRendererConfig(
-          includePoints: true,
-          includeArea: true,
-          areaOpacity: 0.2,
-        ),
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: charts.LineChart(
+          series,
+          animate: true,
+          defaultRenderer: charts.LineRendererConfig(
+            includePoints: true,
+            includeArea: true,
+            areaOpacity: 0.2,
+          ),
 
-        //primaryMeasureAxis, configuracion del EJE "Y"
-        primaryMeasureAxis: charts.NumericAxisSpec(
-          renderSpec: charts.GridlineRendererSpec(
-              lineStyle: charts.LineStyleSpec(
-                  color:
-                      charts.ColorUtil.fromDartColor(Colors.lightGreen[100]!)),
-              labelStyle: charts.TextStyleSpec(
-                  color:
-                      charts.ColorUtil.fromDartColor(Colors.lightGreen[500]!)),
-              labelAnchor: charts.TickLabelAnchor.after,
-              labelJustification: charts.TickLabelJustification.outside),
-          //tickFormatterSpec, con esto determino la unidad de medida de mis "Y", en este caso en euros
-          tickFormatterSpec:
-              charts.BasicNumericTickFormatterSpec.fromNumberFormat(
-                  NumberFormat.simpleCurrency(decimalDigits: 0, locale: 'es')),
-          tickProviderSpec:
-              //Esto determina la cantidad de lineas que apareceran en mi eje carte
-              const charts.BasicNumericTickProviderSpec(desiredTickCount: 8),
+          //primaryMeasureAxis, configuracion del EJE "Y"
+          primaryMeasureAxis: charts.NumericAxisSpec(
+            renderSpec: charts.GridlineRendererSpec(
+                lineStyle: charts.LineStyleSpec(
+                    color: charts.ColorUtil.fromDartColor(
+                        Colors.lightGreen[100]!)),
+                labelStyle: charts.TextStyleSpec(
+                    color: charts.ColorUtil.fromDartColor(
+                        Colors.lightGreen[500]!)),
+                labelAnchor: charts.TickLabelAnchor.after,
+                labelJustification: charts.TickLabelJustification.outside),
+            //tickFormatterSpec, con esto determino la unidad de medida de mis "Y", en este caso en euros
+            tickFormatterSpec:
+                charts.BasicNumericTickFormatterSpec.fromNumberFormat(
+                    NumberFormat.simpleCurrency(
+                        decimalDigits: 0, locale: 'es')),
+            tickProviderSpec:
+                //Esto determina la cantidad de lineas que apareceran en mi eje carte
+                const charts.BasicNumericTickProviderSpec(desiredTickCount: 8),
+          ),
+          //domainAxis ,configuracion del EJE "X"
+          domainAxis: charts.NumericAxisSpec(
+              tickProviderSpec: charts.StaticNumericTickProviderSpec([
+            const charts.TickSpec(0, label: '0'),
+            const charts.TickSpec(5, label: '5'),
+            const charts.TickSpec(10, label: '10'),
+            const charts.TickSpec(15, label: '15'),
+            const charts.TickSpec(20, label: '20'),
+            const charts.TickSpec(25, label: '25'),
+            charts.TickSpec(currentDay, label: currentDay.toString()),
+          ])),
+          selectionModels: [
+            charts.SelectionModelConfig(
+                changedListener: (charts.SelectionModel model) {
+              if (model.hasDatumSelection) {
+                pointAmount = getAmountFormat(model.selectedSeries[0]
+                    .measureFn(model.selectedDatum[0].index)!
+                    .toDouble());
+                pointDay = model.selectedSeries[0]
+                    .domainFn(model.selectedDatum[0].index)
+                    .toString();
+              }
+            })
+          ],
+          //behaviors: Comportamiento del grafico
+          behaviors: [
+            charts.LinePointHighlighter(
+              showHorizontalFollowLine:
+                  charts.LinePointHighlighterFollowLineType.nearest,
+              showVerticalFollowLine:
+                  charts.LinePointHighlighterFollowLineType.nearest,
+              symbolRenderer: SymbolRender(),
+            ),
+            charts.SelectNearest(
+              eventTrigger: charts.SelectionTrigger.tapAndDrag,
+            ),
+          ],
         ),
-        //domainAxis ,configuracion del EJE "X"
-        domainAxis: charts.NumericAxisSpec(
-            tickProviderSpec: charts.StaticNumericTickProviderSpec([
-          const charts.TickSpec(0, label: '0'),
-          const charts.TickSpec(5, label: '5'),
-          const charts.TickSpec(10, label: '10'),
-          const charts.TickSpec(15, label: '15'),
-          const charts.TickSpec(20, label: '20'),
-          const charts.TickSpec(25, label: '25'),
-          charts.TickSpec(currentDay, label: currentDay.toString()),
-        ])),
-        selectionModels: [
-          charts.SelectionModelConfig(
-              changedListener: (charts.SelectionModel model) {
-            if (model.hasDatumSelection) {
-              pointAmount = getAmountFormat(model.selectedSeries[0]
-                  .measureFn(model.selectedDatum[0].index)!
-                  .toDouble());
-              pointDay = model.selectedSeries[0]
-                  .domainFn(model.selectedDatum[0].index)
-                  .toString();
-            }
-          })
-        ],
-        //behaviors: Comportamiento del grafico
-        behaviors: [
-          charts.LinePointHighlighter(
-            showHorizontalFollowLine:
-                charts.LinePointHighlighterFollowLineType.nearest,
-            showVerticalFollowLine:
-                charts.LinePointHighlighterFollowLineType.nearest,
-            symbolRenderer: SymbolRender(),
-          ),
-          charts.SelectNearest(
-            eventTrigger: charts.SelectionTrigger.tapAndDrag,
-          ),
-        ],
       ),
     );
   }
@@ -211,7 +215,6 @@ class SymbolRender extends charts.CircleSymbolRenderer {
         stroke: charts.ColorUtil.fromDartColor(Colors.white),
         strokeWidthPx: 1);
 
-        
     //Es mi variable declarada para darle un estilo propio al texto
     txtStyle.color = charts.MaterialPalette.white;
     txtStyle.fontSize = 12;
@@ -221,7 +224,7 @@ class SymbolRender extends charts.CircleSymbolRenderer {
       element.TextElement(
           'Dia ${ChartLineWidget.pointDay} \n${ChartLineWidget.pointAmount}',
           style: txtStyle),
-      (bounds.left -1).round(),
+      (bounds.left - 1).round(),
       (bounds.top - 32).round(),
     );
   }
