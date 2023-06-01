@@ -15,6 +15,7 @@ class ThemeProvider extends ChangeNotifier {
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: Colors.green,
+      backgroundColor: Colors.black,
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: Colors.green[800],
@@ -24,7 +25,7 @@ class ThemeProvider extends ChangeNotifier {
       primary: Colors.green,
     ),
     scaffoldBackgroundColor: Colors.grey[900],
-    primaryColorDark: const Color.fromARGB(255, 243, 146, 35),
+    primaryColorDark: Colors.grey[800],
     dividerColor: Colors.white,
   );
 
@@ -35,7 +36,7 @@ class ThemeProvider extends ChangeNotifier {
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: Colors.green,
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: Colors.green,

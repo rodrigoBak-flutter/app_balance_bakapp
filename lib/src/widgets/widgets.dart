@@ -28,6 +28,7 @@ export 'package:app_balances_bakapp/src/widgets/balance_widget_wt/flayer_balance
 export 'package:app_balances_bakapp/src/widgets/balance_widget_wt/chart_bar_widget.dart';
 //HOME WIDGET
 export 'package:app_balances_bakapp/src/widgets/home_screen_wt/custom_navigation_bar.dart';
+export 'package:app_balances_bakapp/src/widgets/home_screen_wt/custom_animated_button.dart';
 //GLOBAL WIDGET
 export 'package:app_balances_bakapp/src/widgets/global_wt/percent_indicator.dart';
 //CHART WIDGET
@@ -42,3 +43,12 @@ export 'package:app_balances_bakapp/src/widgets/chart_widget_wt/chart_pie_flayer
 //SETTING WIDGET
 export 'package:app_balances_bakapp/src/widgets/setting_widget_wt/dark_mode_swich.dart';
 export 'package:app_balances_bakapp/src/widgets/setting_widget_wt/time_picker_widget.dart';
+export 'package:app_balances_bakapp/src/widgets/setting_widget_wt/shared_friend.dart';
+//WELCOME WIDGET
+export 'package:app_balances_bakapp/src/widgets/welcome_wt/shake_button_widget.dart';
+export 'package:app_balances_bakapp/src/widgets/welcome_wt/inverted_border_widget.dart';
+export 'package:app_balances_bakapp/src/widgets/welcome_wt/details_widget.dart';
+
+
+
+

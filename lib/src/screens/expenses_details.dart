@@ -109,14 +109,49 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
                     ActionPane(motion: const BehindMotion(), children: [
                   SlidableAction(
                     onPressed: (_) {
-                      setState(() {
-                        cList.removeAt(i);
-                      });
-                      exProvider.deleteExpenses(item.id!);
-                      uiProvider.bnbIndex = 0;
-                      Fluttertoast.showToast(
-                          msg: 'Gasto eliminado 😉',
-                          backgroundColor: Colors.red);
+                      showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: Text(
+                              'Desea eliminar este gasto de ${getAmountFormat(item.amount)} de "${item.category}"'),
+                          content: Text(
+                              'Realizado el ${item.day}/${item.month}/${item.year}'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              child: const Text(
+                                'Cancelar',
+                                style: TextStyle(color: Colors.green),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  cList.removeAt(i);
+                                });
+                                exProvider.deleteExpenses(item.id!);
+                                uiProvider.bnbIndex = 0;
+                                Navigator.pop(context, 'OK');
+                                Fluttertoast.showToast(
+                                    msg: 'Gasto eliminado 😉',
+                                    backgroundColor: Colors.red);
+                              },
+                              child: const Text(
+                                'Eliminar',
+                                style: TextStyle(color: Colors.red),
+                              ),
+                            ),
+                          ],
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                color: Theme.of(context)
+                                    .primaryColorDark), //the outline color
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(20),
+                            ),
+                          ),
+                        ),
+                      );
                     },
                     backgroundColor: Colors.red,
                     foregroundColor: Colors.white,

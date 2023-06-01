@@ -1,4 +1,4 @@
-package com.example.app_balances_bakapp
+package com.app.cash.flow.plus.bakapp
 
 import io.flutter.embedding.android.FlutterActivity
 

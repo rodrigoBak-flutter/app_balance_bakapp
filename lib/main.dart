@@ -17,6 +17,8 @@ import 'package:app_balances_bakapp/src/routes/routes.dart';
 /*
   Sacar de BalanceScreen la condicion de que en Diciembre ya no puedo cargar mas gatos e ingresos :)
 
+Ya fue comentada la condicion
+
 */
 
 void main() async {
@@ -58,7 +60,7 @@ class MyApp extends StatelessWidget {
         ],
         debugShowCheckedModeBanner: false,
         theme: value.getTheme(),
-        initialRoute: 'home',
+        initialRoute: 'welcome',
         routes: appRoutes,
       );
     });

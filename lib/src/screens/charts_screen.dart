@@ -30,10 +30,9 @@ class ChartsScreen extends StatelessWidget {
           elevation: 0.0,
         ),
         body: CustomScrollView(
-          physics: const BouncingScrollPhysics(),
           slivers: [
             SliverAppBar(
-              expandedHeight: size.height * 0.40,
+              expandedHeight: size.height * 0.45,
               flexibleSpace: FlexibleSpaceBar(
                 background: Align(
                   alignment: Alignment.bottomCenter,

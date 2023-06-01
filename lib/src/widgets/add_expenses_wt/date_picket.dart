@@ -37,6 +37,7 @@ class _DatePicketWidgetState extends State<DatePicketWidget> {
     //Calendario
     _calendar() {
       showDatePicker(
+        
         context: context,
         //Idioma que se va a desplegar el calendario
         locale: const Locale('es', 'ES'),

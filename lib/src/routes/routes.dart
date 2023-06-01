@@ -13,6 +13,7 @@ y tener mas control sobre las mismas, manteniendo mi arquitectura mucho mas limp
 
 final Map<String, Widget Function(BuildContext)> appRoutes = {
   //Se puede enrutar de las dos maneras, poniendo el context o en su lugar un " _ "
+  'welcome': (_) => WelcomeScreen(),
   'home': (_) => const HomeScreen(),
   'add_expenses': (_) => const AddExpensesScreen(),
   'add_entries': (_) => const AddEntriesScreen(),

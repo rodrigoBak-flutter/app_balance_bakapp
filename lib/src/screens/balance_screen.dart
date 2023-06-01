@@ -21,7 +21,7 @@ class _BalanceScreenState extends State<BalanceScreen> {
   final _scrollControler = ScrollController();
   double _offset = 0;
 
-  bool disableFAB = false; // Aqui declaro un booleano
+ // bool disableFAB = false; // Aqui declaro un booleano
 
   void _listener() {
     setState(() {
@@ -80,9 +80,9 @@ class _BalanceScreenState extends State<BalanceScreen> {
      */
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: (disableFAB)
-          ? const Text('Ya no puede agregar mas ingresos, ni egresos')
-          : FlowButtonWidget(),
+      floatingActionButton: // (disableFAB)
+          // ? const Text('Ya no puede agregar mas ingresos, ni egresos')  :
+          FlowButtonWidget(),
       body: CustomScrollView(
         controller: _scrollControler,
         physics: const BouncingScrollPhysics(),

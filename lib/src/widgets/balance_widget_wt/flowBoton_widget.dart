@@ -46,6 +46,8 @@ class _FlowButtonWidgetState extends State<FlowButtonWidget>
       clipBehavior: Clip.none,
       children: [
         FloatingActionButton(
+          backgroundColor: Theme.of(context).dividerColor,
+          foregroundColor: Theme.of(context).appBarTheme.backgroundColor,
           heroTag: '1',
           elevation: 0,
           child: AnimatedIcon(

@@ -1,10 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.app_balances_bakapp">
+    package="com.app.cash.flow.plus.bakapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    
 
    <application
-        android:label="app_balances_bakapp"
+        android:label="CashFlowPlus"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">

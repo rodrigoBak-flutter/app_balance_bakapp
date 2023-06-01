@@ -24,6 +24,10 @@ class SettingScreen extends StatelessWidget {
           Divider(
             thickness: 2,
           ),
+          SharedFriendsWidget(),
+          Divider(
+            thickness: 2,
+          ),
         ],
       ),
     );

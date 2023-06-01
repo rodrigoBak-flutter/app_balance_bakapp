@@ -60,6 +60,16 @@ dependencies:
   #Horario universal para mis notifiaciones locales 
   timezone: ^0.9.2
   flutter_native_timezone: ^2.0.0
+  #Compartir mi apliacion con otras personas 
+  share_plus: ^7.0.2
+  #Abrir una URL desde mi App
+  url_launcher: ^6.0.4
+  http: ^0.13.4
+
+
+
+
+
 
 dev_dependencies:
   flutter_test:
