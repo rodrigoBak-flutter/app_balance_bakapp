@@ -36,7 +36,8 @@ class UserPrefence {
   static const notif_minute = 'notif_minute';
 
   int get hour {
-    return _preferences!.getInt(notif_hour) ?? 99; //evitar poner rango entre 00 y 24
+    return _preferences!.getInt(notif_hour) ??
+        99; //evitar poner rango entre 00 y 24
   }
 
   set hour(int value) {
@@ -44,7 +45,8 @@ class UserPrefence {
   }
 
   int get minute {
-    return _preferences!.getInt(notif_minute) ?? 99; //evitar poner rango entre 00 y 60
+    return _preferences!.getInt(notif_minute) ??
+        99; //evitar poner rango entre 00 y 60
   }
 
   set minute(int value) {
@@ -53,7 +55,7 @@ class UserPrefence {
 
   //Funcion para que el usuario pueda BORRAR la hora guardada de su notifiacion diaria local
 
-  deleteTime(){
+  deleteTime() {
     _preferences!.remove(notif_hour);
     _preferences!.remove(notif_minute);
   }

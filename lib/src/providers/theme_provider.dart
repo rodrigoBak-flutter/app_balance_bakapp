@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 /*
 
@@ -55,8 +56,10 @@ class ThemeProvider extends ChangeNotifier {
   Future<void> swapTheme() async {
     if (_selectedTheme == dark) {
       _selectedTheme = light;
+      Fluttertoast.showToast(msg: 'Modo claro Activado 😎',backgroundColor: Colors.green);
     } else {
       _selectedTheme = dark;
+      Fluttertoast.showToast(msg: 'Modo oscuro Activado 😉',backgroundColor: Colors.green);
     }
     notifyListeners();
   }

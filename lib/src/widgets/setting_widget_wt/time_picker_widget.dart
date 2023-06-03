@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 //Utils
@@ -20,6 +21,7 @@ class _TimePickerWitgetState extends State<TimePickerWitget> {
   final _notification = LocalNotification();
   bool _isEnable = false;
   String _title = 'Activar Notificaciones';
+
   @override
   Widget build(BuildContext context) {
     final DateTime getDate = DateTime.now();
@@ -70,6 +72,7 @@ class _TimePickerWitgetState extends State<TimePickerWitget> {
           onChanged: (value) => setState(() {
             _isEnable = value;
             _cancelNotification(value);
+            
           }),
         ),
         ListTile(
@@ -159,6 +162,9 @@ class _TimePickerWitgetState extends State<TimePickerWitget> {
                             _preference.hour = _hour!;
                             _preference.minute = _minute!;
                             Navigator.pop(context);
+                            Fluttertoast.showToast(
+                                msg: 'Notificaciones diarias Activadas',
+                                backgroundColor: Colors.green);
                           });
                         },
                       ),
